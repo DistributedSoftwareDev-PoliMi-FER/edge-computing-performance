@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+  height: 200px;
+  position: relative;
+}
+
+.horizontal-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 16px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid black;
+}
+
+.button1:hover {
+  background-color: black;
+  color: white;
+}
+
+
+</style>
+<title>Edge Computer Performance Project</title>
+</head>
+<body>
+
+<h1 align="center"><font face="Arial">Edge Computer Performance Project</font></h1>
+<hr>
+
+<p align="center"><font face="Arial">In this section there are the openAPI of the microservices</font></p>
+<div class="container">
+  <div class="horizontal-center">
+    <a href="./open-api/chat-service-edge-cloud/open-api.html">
+      <button class="button button1">Chat Service Edge Cloud</button>
+    </a>
+    <a href="./open-api/location-service/open-api.html">
+      <button class="button button1">Location Service</button>
+    </a>
+    <a href="./open-api/streaming-service/open-api.html">
+      <button class="button button1">Streaming Service</button>
+    </a>
+    <a href="./open-api/user-node-service/open-api.html">
+      <button class="button button1">User Node Service</button>
+    </a>
+  </div>
+</div>
+
+
+</body>
+</html>

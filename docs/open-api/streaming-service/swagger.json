@@ -1,0 +1,551 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Streaming Service Cloud",
+		"description": "This is the streaming service service which has been deployed on the main node"
+	},
+	"host": "edge-computing.polimi-ecb7249.gcp.mia-platform.eu",
+	"basePath": "/",
+	"schemes": ["http"],
+	"tags": [
+		{
+			"name": "Public",
+			"description": "No need for authentication"
+		},
+		{
+			"name": "Auth",
+			"description": "Valid Auth0 JWT Token required"
+		},
+		{
+			"name": "FakeAuth",
+			"description": "Used for testing in order to emulate authentication (Now disabled but it's possible to enable them at startup)"
+		},
+		{
+			"name": "Edge-Api",
+			"description": "To be consumed by edge nodes only"
+		}
+	],
+	"securityDefinitions": {
+		"bearerAuth": {
+			"name": "Authorization",
+			"in": "header",
+			"type": "apiKey",
+			"description": "JWT Authorization header released by Auth0"
+		},
+		"edgeAuthKey": {
+			"name": "apikey",
+			"in": "header",
+			"type": "apiKey",
+			"description": "API key generated for each request (valid for 30s)"
+		}
+	},
+	"paths": {
+		"/edge-api/stream/{streamid}": {
+			"get": {
+				"tags": ["Edge-Api"],
+				"description": "Used to get the stream key related to the streamId",
+				"security": [
+					{
+						"edgeAuthKey": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "streamid",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Streamkey"
+						}
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/stream/fakeauth/private": {
+			"get": {
+				"tags": ["FakeAuth"],
+				"description": "Get all the privately available streams",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Stream"
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/stream/fakeauth/mystream": {
+			"get": {
+				"tags": ["FakeAuth"],
+				"description": "Get my stream info",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/MyStream"
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["FakeAuth"],
+				"description": "Delete my stream",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/stream/fakeauth/new": {
+			"post": {
+				"tags": ["FakeAuth"],
+				"description": "Create a new stream",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"example": "Title here"
+								},
+								"thumbnail": {
+									"example": "http://url.expected"
+								},
+								"description": {
+									"example": "Description here"
+								},
+								"invited": {
+									"example": ["username1", "username2"]
+								},
+								"type": {
+									"example": "PRIVATE"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Stream created successfully"
+					},
+					"422": {
+						"description": "Wrong input value"
+					}
+				}
+			}
+		},
+		"/api/stream/fakeauth/update": {
+			"post": {
+				"tags": ["FakeAuth"],
+				"description": "Update my stream info",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"example": "Title here"
+								},
+								"thumbnail": {
+									"example": "http://url.expected"
+								},
+								"description": {
+									"example": "Description here"
+								},
+								"invited": {
+									"example": ["username1", "username2"]
+								},
+								"type": {
+									"example": "PRIVATE"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Stream updated successfully"
+					},
+					"404": {
+						"description": "There is no stream to update"
+					},
+					"422": {
+						"description": "Wrong input value"
+					}
+				}
+			}
+		},
+		"/api/stream": {
+			"get": {
+				"tags": ["Public"],
+				"description": "Get the status of the service",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"example": "streaming-service-v2"
+								},
+								"status": {
+									"example": "OK"
+								},
+								"message": {
+									"example": "This is the streaming service of the main node"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/stream/public": {
+			"get": {
+				"tags": ["Public"],
+				"description": "Get alla publicly available streams",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Stream"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/stream/auth/private": {
+			"get": {
+				"tags": ["Auth"],
+				"description": "",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Stream"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/stream/auth/mystream": {
+			"get": {
+				"tags": ["Auth"],
+				"description": "Get my stream info",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/MyStream"
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Auth"],
+				"description": "Delete my stream",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Stream deleted successfully"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/stream/auth/new": {
+			"post": {
+				"tags": ["Auth"],
+				"description": "Create a new stream",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"example": "Title here"
+								},
+								"thumbnail": {
+									"example": "http://url.expected"
+								},
+								"description": {
+									"example": "Description here"
+								},
+								"invited": {
+									"example": ["username1", "username2"]
+								},
+								"type": {
+									"example": "PRIVATE"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Stream created successfully"
+					},
+					"422": {
+						"description": "Wrong input value"
+					}
+				}
+			}
+		},
+		"/api/stream/auth/update": {
+			"post": {
+				"tags": ["Auth"],
+				"description": "Update my stream info",
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"example": "Title here"
+								},
+								"thumbnail": {
+									"example": "http://url.expected"
+								},
+								"description": {
+									"example": "Description here"
+								},
+								"invited": {
+									"example": ["username1", "username2"]
+								},
+								"type": {
+									"example": "PRIVATE"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Stream updated successfully"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Wrong input value"
+					}
+				}
+			}
+		},
+		"/api/stream/{streamid}/{elem}": {
+			"get": {
+				"tags": ["Public"],
+				"description": "Get a specific file related to a stream",
+				"parameters": [
+					{
+						"name": "streamid",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "elem",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Playlist or Chunk of the specific stream"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/api/stream/{streamId}": {
+			"get": {
+				"tags": ["Public"],
+				"description": "Get the info about a specific stream",
+				"parameters": [
+					{
+						"name": "streamId",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Stream"
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"MyStream": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"thumbnail": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"streamkey": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"enum": ["PUBLIC", "PRIVATE"]
+				},
+				"invited": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ONLINE", "OFFLINE"]
+				},
+				"author": {
+					"type": "string"
+				},
+				"__v": {
+					"type": "integer"
+				}
+			},
+			"xml": {
+				"name": "MyStream"
+			}
+		},
+		"Stream": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"thumbnail": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ONLINE", "OFFLINE"]
+				},
+				"author": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "Stream"
+			}
+		},
+		"Streamkey": {
+			"type": "object",
+			"properties": {
+				"streamkey": {
+					"type": "string"
+				}
+			},
+			"xml": {
+				"name": "Streamkey"
+			}
+		}
+	}
+}
