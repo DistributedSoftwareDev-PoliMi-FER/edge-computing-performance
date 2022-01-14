@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-login-site
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.5.0
+    fluentbit.io/parser: nginx
+  labels:
+    app: oauth-login-site
+    app.kubernetes.io/name: oauth-login-site
+    app.kubernetes.io/version: 7.1.2
+    app.kubernetes.io/component: core
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth-login-site
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: nginx
+      labels:
+        app: oauth-login-site
+        app.kubernetes.io/name: oauth-login-site
+        app.kubernetes.io/version: 7.1.2
+        app.kubernetes.io/component: core
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-nginx
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      containers:
+        - name: oauth-login-site
+          image: nexus.mia-platform.eu/backoffice/login-site:7.1.2
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 25Mi
+            requests:
+              memory: 5Mi
+          volumeMounts: []
+          args: []
+          env: []
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            httpGet:
+              port: 8080
+              path: /web-login
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            httpGet:
+              port: 8080
+              path: /web-login
+      volumes: []

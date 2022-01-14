@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: DaemonSet 
+metadata:
+  name: nginx-api-gateway-edge
+  namespace: edge-computing
+  annotations:
+    mia-platform.eu/version: 8.2.1
+    fluentbit.io/parser: pino
+  labels:
+    app: nginx-api-gateway-edge
+    app.kubernetes.io/name: nginx-api-gateway-edge
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: prod
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  selector:
+    matchLabels:
+      app: nginx-api-gateway-edge
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: nginx-api-gateway-edge
+        app.kubernetes.io/name: nginx-api-gateway-edge
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: prod
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        node-role.kubernetes.io/agent: ""
+        node-role.kubernetes.io/edge: ""
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: nginx-api-gateway-edge
+          image: nexus.mia-platform.eu/edge-computing/nginx-api-gateway-edge
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts: []
+          args: []
+      volumes: []

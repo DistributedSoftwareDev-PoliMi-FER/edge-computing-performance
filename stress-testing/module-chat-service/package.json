@@ -1,0 +1,27 @@
+{
+	"name": "chat-scripts",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "tsc && pm2 start system.config.js",
+		"stop": "pm2 delete all"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"crypto-js": "^4.1.1",
+		"jose": "^4.3.7",
+		"pm2": "^5.1.2",
+		"socket.io-client": "^4.4.0",
+		"typescript": "^4.5.3"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"devDependencies": {
+		"@types/crypto-js": "^4.0.2",
+		"@types/node": "^16.11.18",
+		"axios": "^0.24.0"
+	}
+}

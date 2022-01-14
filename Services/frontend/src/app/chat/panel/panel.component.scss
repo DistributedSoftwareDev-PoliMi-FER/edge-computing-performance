@@ -1,0 +1,38 @@
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
+:host {
+
+  .panel-parent{
+    overflow-x: hidden;
+  }
+
+  .chat-header{
+    font-size: $header-main;
+  }
+
+  .new-chat {
+    font-size: 35px;
+    background-color: map-get($colors, green-success);
+    color: white;
+    align-self: center;
+  }
+
+  .search-input {
+    width: 80%;
+    padding-left: 12px;
+  }
+
+  .centered {
+    margin: auto;
+    text-align: center;
+  }
+
+  p.centered {
+    font-size: 1.5em;
+  }
+
+  .spinner {
+    margin: 20px auto;
+  }
+}

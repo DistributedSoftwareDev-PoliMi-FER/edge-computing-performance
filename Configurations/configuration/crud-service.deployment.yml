@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-service
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.4.1
+    fluentbit.io/parser: pino
+  labels:
+    app: crud-service
+    app.kubernetes.io/name: crud-service
+    app.kubernetes.io/version: 3.2.3
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crud-service
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: crud-service
+        app.kubernetes.io/name: crud-service
+        app.kubernetes.io/version: 3.2.3
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: crud-service
+          image: nexus.mia-platform.eu/core/crud-service:3.2.3
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: crud-service-collections
+              mountPath: /home/node/app/collections
+              readOnly: true
+          args: []
+          env:
+            - name: MONGODB_URL
+              value: '{{MONGODB_URL}}'
+            - name: COLLECTION_DEFINITION_FOLDER
+              value: /home/node/app/collections
+            - name: HTTP_PORT
+              value: '3000'
+            - name: LOG_LEVEL
+              value: '{{LOG_LEVEL}}'
+            - name: SERVICE_PREFIX
+              value: /
+            - name: USER_ID_HEADER_KEY
+              value: miauserid
+            - name: TRUSTED_PROXIES
+              value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+            - name: CRUD_LIMIT_CONSTRAINT_ENABLED
+              value: '{{CRUD_LIMIT_CONSTRAINT_ENABLED}}'
+            - name: EXPOSE_METRICS
+              value: 'false'
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            httpGet:
+              port: 3000
+              path: /-/ready
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            httpGet:
+              port: 3000
+              path: /-/healthz
+      volumes:
+        - name: crud-service-collections
+          configMap:
+            name: crud-service-collections

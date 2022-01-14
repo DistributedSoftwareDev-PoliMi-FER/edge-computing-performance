@@ -1,0 +1,24 @@
+<vg-player class="mb-5">
+  <vg-overlay-play></vg-overlay-play>
+  <vg-buffering></vg-buffering>
+
+  <vg-controls>
+    <vg-play-pause></vg-play-pause>
+
+    <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+    <vg-mute></vg-mute>
+    <vg-volume></vg-volume>
+
+    <vg-fullscreen></vg-fullscreen>
+  </vg-controls>
+
+  <video #media
+    #vgHls="vgHls"
+    [vgMedia]="$any(media)"
+    [vgHls]="streamLink"
+    id="stream-video"
+    crossorigin>
+</video>
+</vg-player>
+

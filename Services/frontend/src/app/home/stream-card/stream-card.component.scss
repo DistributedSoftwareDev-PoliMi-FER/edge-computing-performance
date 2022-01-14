@@ -1,0 +1,23 @@
+:host {
+  .stream-card {
+    width: 300px;
+
+    & .private-info {
+      font-weight: 200;
+    }
+
+    & img {
+      height: 220px;
+      display: block;
+      object-fit: scale-down;
+    }
+
+    & mat-card-footer > a > button {
+          width: 100%;
+    }
+  }
+
+  .private {
+    background-color: #450f0f;
+  }
+}

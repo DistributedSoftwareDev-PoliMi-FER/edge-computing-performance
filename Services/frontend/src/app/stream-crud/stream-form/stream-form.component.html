@@ -1,0 +1,113 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="ml-5 form-input" hintLabel="3-50 characters">
+        <mat-label>Stream name</mat-label>
+        <input
+                matInput
+                maxlength="50"
+                minlength="3"
+                required
+                type="text"
+                name="stream-name"
+                placeholder="np. PewDiePie Christmas Stream!"
+                formControlName="title"
+        >
+        <mat-error>Name must consists of 3-50 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="ml-5 form-input" hintLabel="3-150 characters">
+        <mat-label>Stream description</mat-label>
+        <input
+                matInput
+                maxlength="150"
+                minlength="3"
+                required
+                type="text"
+                name="description"
+                placeholder="np. Come join us and have fun!"
+                formControlName="description"
+        >
+        <mat-error>Description must consists of 3-150 characters</mat-error>
+    </mat-form-field>
+
+    <div class="pt-4">
+        <label class="radio-label">Stream visibility</label>
+        <mat-radio-group class="radio-group"
+                         formControlName="type">
+            <mat-radio-button class="radio-button"
+                              value="PUBLIC">
+                Public
+            </mat-radio-button>
+            <mat-radio-button class="radio-button"
+                              value="PRIVATE">
+                Private
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div *ngIf="form.get('type')?.value === 'PRIVATE'">
+        Only invited users will see your stream on the main page.
+        All other users will have to use a direct link to your stream.
+        <mat-expansion-panel class="invited-panel" >
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Manage invited users
+                </mat-panel-title>
+                <mat-panel-description>
+                    Add or remove users
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p *ngIf="invited.length === 0">No users invited</p>
+            <mat-list dense class="container">
+                <mat-list-item *ngFor="let user of invited; let i = index" class="row">
+                    <div class="col-8">{{user}}</div>
+                    <button class="col-4"
+                            mat-icon-button
+                            color="warn"
+                            (click)="removeFromInvited(i)">
+                        <mat-icon>person_remove</mat-icon>
+                    </button>
+                </mat-list-item>
+
+            </mat-list>
+            <div class="-bottom">
+                <mat-form-field >
+                    <mat-label>Invite user</mat-label>
+                    <input placeholder="Username..."
+                           maxlength="50"
+                           minlength="3"
+                           [(ngModel)]="newInvitation"
+                           [ngModelOptions]="{standalone: true}"
+                           matInput>
+                </mat-form-field>
+                <button mat-stroked-button
+                        color="accent"
+                        type="button"
+                        (click)="inviteUser()">
+                    Add to list
+                </button>
+            </div>
+        </mat-expansion-panel>
+    </div>
+
+    <mat-form-field class="ml-5 form-input" hintLabel="300x300 yields best results">
+        <mat-label>Stream image thumbnail URL</mat-label>
+        <input
+                matInput
+                type="url"
+                required
+                name="thumbnail"
+                placeholder="https://imgur.com"
+                formControlName="thumbnail"
+        >
+        <mat-error>Must contain a valid url</mat-error>
+    </mat-form-field>
+
+    <div class="action-buttons">
+        <button mat-raised-button color="primary" type="submit">
+            Submit and start streaming!
+        </button>
+        <button mat-raised-button color="warn" (click)="onCancel()">
+            Cancel
+        </button>
+    </div>
+</form>

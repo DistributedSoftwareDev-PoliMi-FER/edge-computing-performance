@@ -1,0 +1,30 @@
+
+
+:host {
+
+  :hover {
+    background-color: rgba(85, 84, 84, 0.99);
+    cursor: pointer;
+  }
+
+  .parent {
+    padding-bottom: 15px;
+    padding-left: 25px;
+  }
+
+  .username {
+    font-size: 18px;
+    font-weight: bolder;
+    line-height: 1.75;
+  }
+
+  .message {
+    max-width: 85%;
+  }
+
+  .date {
+    display: flex;
+    justify-content: flex-end;
+    width:85%;
+  }
+}

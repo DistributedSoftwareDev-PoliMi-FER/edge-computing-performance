@@ -1,0 +1,5 @@
+[Match]
+Name=br2
+
+[Network]
+DHCP=ipv4

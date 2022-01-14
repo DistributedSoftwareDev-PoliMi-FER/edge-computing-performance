@@ -1,0 +1,12 @@
+<div class="container parent" (click)="emitUserClicked()">
+    <div class="row username">
+        {{overview.username}}
+    </div>
+    <div class="row message">
+        {{getFormattedMessage()}}
+    </div>
+    <div class="date">
+        {{overview?.date | date :'short'}}
+    </div>
+</div>
+<mat-divider></mat-divider>

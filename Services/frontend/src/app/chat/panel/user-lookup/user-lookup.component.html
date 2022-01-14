@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Search for a user</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput cdkFocusInitial [(ngModel)]="username">
+    </mat-form-field>
+    <mat-error *ngIf="notFound">User not found</mat-error>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="back()">Back</button>
+    <button mat-button (click)="search()">Search</button>
+</div>

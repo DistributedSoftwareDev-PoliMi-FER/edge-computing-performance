@@ -1,0 +1,16 @@
+{
+  "/api/stream": {
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+  "/api/location-service": {
+    "target": "http://localhost:14009",
+    "secure": false,
+    "pathRewrite": {"/api/location-service" :  ""}
+  },
+  "/api/chat-service/socket.io": {
+    "target": "http://localhost:3500/",
+    "ws": true,
+    "pathRewrite": {"/api/chat-service" :  ""}
+  }
+}

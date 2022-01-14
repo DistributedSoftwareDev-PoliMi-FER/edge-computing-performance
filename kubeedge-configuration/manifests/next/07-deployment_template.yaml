@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+  name: cloudcore
+  namespace: kubeedge
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kubeedge
+      kubeedge: cloudcore
+  template:
+    metadata:
+      labels:
+        k8s-app: kubeedge
+        kubeedge: cloudcore
+    spec:
+      hostNetwork: true
+      containers:
+        - name: cloudcore
+          image: kubeedge/cloudcore:<version>
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 10000
+              name: cloudhub
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          volumeMounts:
+            - name: conf
+              mountPath: /etc/kubeedge/config
+            - name: certs
+              mountPath: /etc/kubeedge
+            - name: sock
+              mountPath: /var/lib/kubeedge
+          # Might not work if there are polcies on the GKE
+          securityContext:
+            privileged: true
+      restartPolicy: Always
+      serviceAccount: cloudcore
+      serviceAccountName: cloudcore
+      volumes:
+        - name: conf
+          configMap:
+            name: cloudcore
+        - name: certs
+          hostPath:
+            path: /etc/kubeedge
+            type: DirectoryOrCreate
+        - name: sock
+          hostPath:
+            path: /var/lib/kubeedge
+            type: DirectoryOrCreate

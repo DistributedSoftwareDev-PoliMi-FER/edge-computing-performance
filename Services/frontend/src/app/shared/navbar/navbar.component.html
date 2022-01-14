@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <a routerLink="/home">Edge Conferencing </a>
+
+    <span class="spacer"></span>
+
+    <button *ngIf="(auth.isAuthenticated$ | async) === false else loggedUser"
+            mat-button
+            color="accent"
+            (click)="loginWithRedirect()">Login</button>
+
+    <ng-template #loggedUser>
+        <a routerLink="/userStream">
+            <button mat-button>Your stream</button>
+        </a>
+            <button mat-button
+                    color="accent"
+                    (click)="logout()">Logout</button>
+        <button mat-button
+                color="accent"
+                (click)="emitToggle()">
+                Chat
+        </button>
+    </ng-template>
+  </mat-toolbar>

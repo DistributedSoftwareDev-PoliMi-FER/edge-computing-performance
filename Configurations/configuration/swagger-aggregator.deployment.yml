@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swagger-aggregator
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.4.1
+    fluentbit.io/parser: pino
+  labels:
+    app: swagger-aggregator
+    app.kubernetes.io/name: swagger-aggregator
+    app.kubernetes.io/version: 3.3.0
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swagger-aggregator
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: swagger-aggregator
+        app.kubernetes.io/name: swagger-aggregator
+        app.kubernetes.io/version: 3.3.0
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: swagger-aggregator
+          image: nexus.mia-platform.eu/core/swagger-aggregator:3.3.0
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: swagger-aggregator-config
+              mountPath: /home/node/app/configs
+              readOnly: true
+          args: []
+          env:
+            - name: CONFIG_FILE_PATH
+              value: /home/node/app/configs/config.json
+            - name: HTTP_PORT
+              value: '3000'
+            - name: LOG_LEVEL
+              value: '{{LOG_LEVEL}}'
+            - name: TRUSTED_PROXIES
+              value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            httpGet:
+              port: 3000
+              path: /-/ready
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            httpGet:
+              port: 3000
+              path: /-/healthz
+      volumes:
+        - name: swagger-aggregator-config
+          configMap:
+            name: swagger-aggregator-config

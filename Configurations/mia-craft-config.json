@@ -1,0 +1,208 @@
+{
+  "external_client": {
+    "name": "external_client",
+    "visualize": {
+      "nodeType": "basenode",
+      "position": {
+        "x": 635,
+        "y": 190
+      },
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "crud-service": {
+    "name": "crud-service",
+    "visualize": {
+      "position": {
+        "x": 24.000016349337216,
+        "y": 101.99999999999999
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "swagger-aggregator": {
+    "name": "swagger-aggregator",
+    "visualize": {
+      "position": {
+        "x": 440.00089870583327,
+        "y": 360
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "api-portal": {
+    "name": "api-portal",
+    "visualize": {
+      "position": {
+        "x": 535.0000032675273,
+        "y": 287
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "microservice-gateway": {
+    "name": "microservice-gateway",
+    "visualize": {
+      "nodeType": "basenode",
+      "position": {
+        "x": -72,
+        "y": 103.99999999999997
+      },
+      "network": {
+        "targets": []
+      },
+      "serviceDecorators": []
+    }
+  },
+  "authorization-service": {
+    "name": "authorization-service",
+    "visualize": {
+      "position": {
+        "x": 122.00021556781576,
+        "y": 103
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "api-gateway": {
+    "name": "api-gateway",
+    "visualize": {
+      "network": {
+        "targets": [
+          "swagger-aggregator",
+          "api-portal",
+          "location-service",
+          "user-node-service",
+          "streaming-service",
+          "frontend",
+          "chat-service",
+          "chat-service-edge-cloud",
+          "oauth-login-site"
+        ]
+      },
+      "position": {
+        "x": 300.0006764162801,
+        "y": 186
+      },
+      "nodeType": "basenode"
+    }
+  },
+  "location-service": {
+    "name": "location-service",
+    "visualize": {
+      "position": {
+        "x": -77.99964826555129,
+        "y": 490
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "user-node-service": {
+    "name": "user-node-service",
+    "visualize": {
+      "position": {
+        "x": 47.00063859093234,
+        "y": 548
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "auth0-client": {
+    "name": "auth0-client",
+    "visualize": {
+      "position": {
+        "x": 219.0005776787716,
+        "y": 103
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "streaming-service": {
+    "name": "streaming-service",
+    "visualize": {
+      "position": {
+        "x": 612.000892984549,
+        "y": 453
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "frontend": {
+    "name": "frontend",
+    "visualize": {
+      "position": {
+        "x": 474.0002137023423,
+        "y": 505
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "chat-service": {
+    "name": "chat-service",
+    "visualize": {
+      "position": {
+        "x": 10.000932241564897,
+        "y": 302
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "chat-service-edge-cloud": {
+    "name": "chat-service-edge-cloud",
+    "visualize": {
+      "position": {
+        "x": 125.00072502711589,
+        "y": 373
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  },
+  "oauth-login-site": {
+    "name": "oauth-login-site",
+    "visualize": {
+      "position": {
+        "x": 300.00036942317774,
+        "y": 607
+      },
+      "nodeType": "basenode",
+      "network": {
+        "targets": []
+      }
+    }
+  }
+}

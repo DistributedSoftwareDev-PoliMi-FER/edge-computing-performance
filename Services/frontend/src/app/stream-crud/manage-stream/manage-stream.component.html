@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="row pt-3">
+        <div class="col-12">
+            <h1>Your stream details</h1>
+        </div>
+    </div>
+
+   <figcaption>
+
+        <h2><span>Stream name</span>{{userStream.title}}</h2>
+        <p><span>Description</span>{{userStream.description}}</p>
+        <p><span>Thumbnail link</span>{{userStream.thumbnail}}</p>
+       <img mat-card-image [src]=userStream.thumbnail alt="Stream thumbnail image"/>
+
+        <div *ngIf="userStream.type === 'PRIVATE'">
+             Stream is set as private. Only invited users will see your stream on the main page.
+            All other users will have to use a direct link to your stream.
+            <mat-expansion-panel class="invited-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        See invited users
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngIf="userStream.invited.length === 0">No users invited</p>
+                <mat-list dense class="container">
+                    <mat-list-item *ngFor="let user of userStream.invited; let i = index" class="row">
+                        <div class="col-8">{{user}}</div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </div>
+
+        <details class="details-example">
+            <summary>Stream key (click to show)</summary>
+            <ul>
+                <li>{{userStream.streamkey}}</li>
+            </ul>
+        </details>
+        <p><span> Info &#10069;</span>
+            To launch a stream use the key visible above, use a streaming software with the following link:
+            rtmp://35.205.136.156/live/[StreamKey] . The key can be found above.
+        </p>
+        <button class="update-stream-button"
+                mat-raised-button
+                color="accent"
+                (click)="updateStream()">
+            Update stream
+        </button>
+        <button mat-raised-button
+                color="warn"
+                (click)="deleteStream()">
+            Delete stream
+        </button>
+    </figcaption>
+
+</div>

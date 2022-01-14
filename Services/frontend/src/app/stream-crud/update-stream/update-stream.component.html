@@ -1,0 +1,15 @@
+<div class="container">
+    <ng-container *ngIf="!isLoading else loadingInfo">
+        <h1 class="pt-3">Update your stream</h1>
+        <p>Use the form below to update your stream metadata. Remember to submit the data.</p>
+
+        <edge-stream-form (formSubmitted)="onSubmit($event)"
+                          [formData]="initStream"
+                          (cancel)="onCancel()">
+        </edge-stream-form>
+    </ng-container>
+
+    <ng-template #loadingInfo>
+        <mat-spinner class="centered spinner"></mat-spinner>
+    </ng-template>
+</div>

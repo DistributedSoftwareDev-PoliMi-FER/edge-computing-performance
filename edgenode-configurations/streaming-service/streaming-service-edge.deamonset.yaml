@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: DaemonSet 
+metadata:
+  name: streaming-service-edge
+  namespace: edge-computing
+  annotations:
+    mia-platform.eu/version: 8.2.1
+    fluentbit.io/parser: pino
+  labels:
+    app: streaming-service-edge
+    app.kubernetes.io/name: streaming-service-edge
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: prod
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  selector:
+    matchLabels:
+      app: streaming-service-edge
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: streaming-service-edge
+        app.kubernetes.io/name: streaming-service-edge
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: prod
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        node-role.kubernetes.io/agent: ""
+        node-role.kubernetes.io/edge: ""
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: streaming-service-edge
+          image: nexus.mia-platform.eu/edge-computing/streaming-service-edge
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts: []
+          args: []
+          env:
+            - name: EDGE_HTTP_PORT
+              value: '3000'
+            - name: LOG_LEVEL
+              value: 'info'
+            - name: STREAM_SERVICE_HOST
+              value: 'http://localhost:7777'
+            - name: MAIN_API_SERVICE_HOST
+              value: 'https://edge-computing.polimi-ecb7249.gcp.mia-platform.eu'
+            - name: RTMP_MAIN_SERVER
+              value: 'rtmp://35.205.136.156'
+            - name: SERVICE_PREFIX
+              value: '/'
+            - name: EDGENODE_SECRET
+              value: 'NeverGonnaGiveYouUp'
+
+      volumes: []

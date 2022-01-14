@@ -1,0 +1,75 @@
+include:
+  - file: "/common/base-build.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+  - file: "/common/docker-build-images.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+
+default:
+  image: node:16.13.1
+
+install-dependencies:
+  stage: prepare
+
+  before_script:
+    - npm version
+
+  script:
+    - echo "${PRIVATE_NPM_REGISTRY_TOKEN}" > ${HOME}/.npmrc
+    - npm ci
+
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - node_modules
+
+test:
+  stage: test
+
+  coverage: '/^Statements\s*:\s*([^%]+)/'
+  script:
+    - apt update
+    - apt install -y ffmpeg
+    - npm run lint
+    - npm run build --if-present
+    - npm run coverage
+
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - node_modules
+    policy: pull
+
+  artifacts:
+    reports:
+      cobertura: coverage/cobertura-coverage.xml
+
+.docker-job:
+
+  variables:
+    COMMIT_SHA_FILEPATH: /home/node/app/commit.sha
+
+
+test-latest:
+  image: node:16.13.1
+  stage: test
+
+  script:
+    - apt update
+    - apt install -y ffmpeg
+    - echo "${PRIVATE_NPM_REGISTRY_TOKEN}" > ${HOME}/.npmrc
+    - npm ci
+    - npm run build --if-present
+    - npm run test
+
+  allow_failure: true
+
+  needs: []
+
+
+default:
+  image: node:16.13.1
+
+variables:
+  IMAGE_NAME: edge-computing/streaming-service

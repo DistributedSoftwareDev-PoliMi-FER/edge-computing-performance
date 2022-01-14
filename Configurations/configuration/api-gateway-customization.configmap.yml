@@ -1,0 +1,212 @@
+apiVersion: v1
+data:
+  auth-location.conf: |
+    location = /auth {
+      internal;
+      auth_request off;
+      proxy_pass_request_body off;
+      proxy_set_header client-type $client_type;
+      proxy_set_header isbackoffice $isbackoffice;
+      proxy_set_header Original-Request-Uri "$original_request_uri";
+      proxy_set_header Original-Request-Method "$original_request_method";
+      proxy_set_header Content-Length "";
+      include /etc/nginx/set_proxy_headers.conf;
+      client_max_body_size 0;
+
+      set $upstream http://authorization-service;
+      proxy_pass $upstream;
+    }
+  auth-set-userid.conf: |
+    proxy_set_header 'miauserid' $mia_userid;
+    proxy_set_header 'miausergroups' $mia_groups;
+    proxy_set_header 'client-type' $client_type;
+    proxy_set_header 'isbackoffice' $isbackoffice;
+    proxy_set_header 'miauserproperties' $mia_userproperties;
+  auth-usage.conf: |
+    auth_request /auth;
+    auth_request_set $mia_userid $upstream_http_mia_userid;
+    auth_request_set $mia_groups $upstream_http_mia_groups;
+    auth_request_set $mia_allowed $upstream_http_mia_allowed;
+    auth_request_set $mia_userproperties $upstream_http_mia_userproperties;
+  backoffice-root-location-extension.conf: ''
+  backoffice-server-extension.conf: ''
+  server-extension.conf: |-
+    location /api/chat-service/ {
+        proxy_pass http://$proxy_name$proxy_url;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # WebSocket support
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection upgrade;
+    }
+  custom-maps-extension.conf: ''
+  default-error-page.conf: |-
+    error_page 403 = /error403.$extension_by_http_accept;
+    error_page 401 = /error401.$extension_by_http_accept;
+
+    location /error403.json {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 403 $content_403;
+    }
+
+    location /error403.html {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 403 $content_403;
+    }
+
+    location /error401.json {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 401 $content_401;
+    }
+    location /error401.html {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 401 $content_401;
+    }
+  header-debug.conf: |
+    add_header 'X-Debug-Proxy-Name' $debug_proxy_name always;
+    add_header 'X-Debug-Proxy-URL' $debug_proxy_url always;
+  maps-header-debug.conf: |
+    map $debug_mode_enabled $debug_proxy_name {
+      default "";
+      "1" $secret_resolution-$is_allowed-$original_request_method-$original_request_uri;
+    }
+
+    map $debug_mode_enabled $debug_proxy_url {
+      default "";
+      "1" $original_request_method-$original_request_uri;
+    }
+  maps-is_allowed.conf: |
+    map $mia_allowed $is_allowed {
+      default "0";
+      "1" "1";
+    }
+  maps-original-request-uri.conf: |
+    map $original_request_uri$is_args$args $original_request_uri$is_args$args {
+      default "$original_request_uri$is_args$args";
+      "~^(?<path>.*)\?" "$path";
+    }
+  maps-proxyBackofficeName.conf: |
+    map $secret_resolution-$is_allowed-$original_request_method-$original_request_uri $proxy_backoffice_name {
+      default "not_found";
+    # EXTENSION BEFORE START
+
+    # EXTENSION BEFORE END
+      "~^wrong-" "unauthorized";
+      "~^(secreted|unsecreted)-1-GET-/web-login" "oauth-login-site";
+    # EXTENSION AFTER START
+
+    # EXTENSION AFTER END
+    }
+  maps-proxyBackofficeUrl.conf: |
+    map $original_request_method-$original_request_uri$is_args$args $proxy_backoffice_url {
+      default $original_request_uri$is_args$args;
+    # EXTENSION BEFORE START
+
+    # EXTENSION BEFORE END
+    # EXTENSION AFTER START
+
+    # EXTENSION AFTER END
+    }
+  maps-proxyName.conf: |
+    map $secret_resolution-$is_allowed-$original_request_method-$original_request_uri $proxy_name {
+      default "not_found";
+    # EXTENSION BEFORE START
+
+    # EXTENSION BEFORE END
+      "~^wrong-" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/edge-api/stream([/\?].*|$)$" "streaming-service";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/edge-api/stream([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-GET-/documentations/swagger/" "swagger-aggregator";
+      "~^(secreted|unsecreted)-(0|1)-GET-/documentations/swagger/" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/documentations/swagger([/\?].*|$)$" "swagger-aggregator";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/documentations/swagger([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/documentations/openapi([/\?].*|$)$" "swagger-aggregator";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/documentations/openapi([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/documentations/api-portal/api([/\?].*|$)$" "swagger-aggregator";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/documentations/api-portal/api([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-GET-/documentations/api-portal/api/swagger/" "api-portal";
+      "~^(secreted|unsecreted)-(0|1)-GET-/documentations/api-portal/api/swagger/" "unauthorized";
+      "~^(secreted|unsecreted)-1-GET-/documentations/api-portal/" "api-portal";
+      "~^(secreted|unsecreted)-(0|1)-GET-/documentations/api-portal/" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/documentations/api-portal([/\?].*|$)$" "api-portal";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/documentations/api-portal([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/api/user-node-service([/\?].*|$)$" "user-node-service";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/api/user-node-service([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/api/stream([/\?].*|$)$" "streaming-service";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/api/stream([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/api/location-service([/\?].*|$)$" "location-service";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/api/location-service([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/api/chat-service-edge-cloud([/\?].*|$)$" "chat-service-edge-cloud";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/api/chat-service-edge-cloud([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-/api/chat-service([/\?].*|$)$" "chat-service";
+      "~^(secreted|unsecreted)-(0|1)-\w+-/api/chat-service([/\?].*|$)$" "unauthorized";
+      "~^(secreted|unsecreted)-1-\w+-([/\?].*|$)$" "frontend";
+      "~^(secreted|unsecreted)-(0|1)-\w+-([/\?].*|$)$" "unauthorized";
+    # EXTENSION AFTER START
+
+    # EXTENSION AFTER END
+    }
+  maps-proxyUrl.conf: |
+    map $original_request_method-$original_request_uri$is_args$args $proxy_url {
+      default $original_request_uri$is_args$args;
+    # EXTENSION BEFORE START
+
+    # EXTENSION BEFORE END
+      "~^\w+-/edge-api/stream(?<path>[/\?].*|$)$" "$original_request_uri$is_args$args";
+      "~^\w+-/documentations/swagger(?<path>[/\?].*|$)$" "/swagger$path";
+      "~^\w+-/documentations/openapi(?<path>[/\?].*|$)$" "/openapi$path";
+      "~^\w+-/documentations/api-portal/api(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-/documentations/api-portal(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-/api/user-node-service(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-/api/stream(?<path>[/\?].*|$)$" "$original_request_uri$is_args$args";
+      "~^\w+-/api/location-service(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-/api/chat-service-edge-cloud(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-/api/chat-service(?<path>[/\?].*|$)$" "$path";
+      "~^\w+-(?<path>[/\?].*|$)$" "$original_request_uri$is_args$args";
+    # EXTENSION AFTER START
+
+    # EXTENSION AFTER END
+    }
+  maps-secret.conf: |
+    map $mia_client_key $secret_resolution {
+      default "wrong";
+      "OIS6EDeSnpGaNcdrZNqPNdXCpOD5C7nN" "secreted";
+      "" "unsecreted";
+    }
+  maps-clientType.conf: |
+    map $mia_client_key $client_type {
+      default "";
+      "OIS6EDeSnpGaNcdrZNqPNdXCpOD5C7nN" "api";
+    }
+  maps-type.conf: |
+    map $http_accept $type {
+      default "text/html";
+      "~json" "application/json";
+    }
+  maps-http-accept-extension.conf: |
+    map $http_accept $extension_by_http_accept {
+      default "html";
+      "~json" "json";
+    }
+  rate-limit-usage.conf: '# remove'
+  rate-limit-zone.conf: '# remove'
+  rewrite.conf: ''
+  root-location-extension.conf: ''
+  upstreams.conf: |
+    # EXTENSION BEFORE START
+
+    # EXTENSION BEFORE END
+kind: ConfigMap
+metadata:
+  name: api-gateway-customization
+  labels:
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi

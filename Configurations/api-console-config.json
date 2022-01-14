@@ -1,0 +1,2759 @@
+{
+  "applications": {},
+  "collections": {},
+  "endpoints": {
+    "/documentations/api-portal": {
+      "basePath": "/documentations/api-portal",
+      "pathRewrite": "/",
+      "description": "",
+      "type": "custom",
+      "tags": [
+        "api-docs"
+      ],
+      "public": true,
+      "showInDocumentation": false,
+      "secreted": false,
+      "acl": "false",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": true,
+      "allowUnknownResponseContentType": true,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "api-portal",
+      "routes": {
+        "GET/": {
+          "id": "GET/",
+          "path": "/",
+          "public": {
+            "inherited": false,
+            "value": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "verb": "GET",
+          "preDecorators": [],
+          "postDecorators": []
+        },
+        "GET/api/swagger/": {
+          "id": "GET/api/swagger/",
+          "path": "/api/swagger/",
+          "public": {
+            "inherited": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "verb": "GET",
+          "preDecorators": [],
+          "postDecorators": []
+        }
+      }
+    },
+    "/documentations/api-portal/api": {
+      "basePath": "/documentations/api-portal/api",
+      "pathRewrite": "/",
+      "description": "",
+      "type": "custom",
+      "tags": [
+        "api-docs"
+      ],
+      "public": true,
+      "showInDocumentation": false,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "swagger-aggregator"
+    },
+    "/documentations/swagger": {
+      "basePath": "/documentations/swagger",
+      "pathRewrite": "/swagger",
+      "description": "",
+      "type": "custom",
+      "tags": [
+        "api-docs"
+      ],
+      "public": true,
+      "showInDocumentation": false,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": true,
+      "allowUnknownResponseContentType": true,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "swagger-aggregator",
+      "routes": {
+        "GET/": {
+          "id": "GET/",
+          "path": "/",
+          "public": {
+            "inherited": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "verb": "GET",
+          "preDecorators": [],
+          "postDecorators": []
+        }
+      }
+    },
+    "/documentations/openapi": {
+      "basePath": "/documentations/openapi",
+      "pathRewrite": "/openapi",
+      "description": "",
+      "type": "custom",
+      "tags": [
+        "api-docs"
+      ],
+      "public": true,
+      "showInDocumentation": false,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "swagger-aggregator"
+    },
+    "/api/location-service": {
+      "basePath": "/api/location-service",
+      "pathRewrite": "/",
+      "description": "Endpoint /api/location-service",
+      "type": "custom",
+      "tags": [
+        "location-service"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "location-service"
+    },
+    "/api/user-node-service": {
+      "basePath": "/api/user-node-service",
+      "pathRewrite": "/",
+      "description": "Endpoint /api/user-node-service",
+      "type": "custom",
+      "tags": [
+        "user-node-service"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "user-node-service"
+    },
+    "/api/stream": {
+      "basePath": "/api/stream",
+      "pathRewrite": "/api/stream",
+      "description": "Endpoint /api/stream",
+      "type": "custom",
+      "tags": [
+        "streaming-service"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "streaming-service"
+    },
+    "/": {
+      "basePath": "/",
+      "pathRewrite": "/",
+      "description": "Endpoint /",
+      "type": "custom",
+      "tags": [
+        "frontend"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "frontend"
+    },
+    "/edge-api/stream": {
+      "basePath": "/edge-api/stream",
+      "pathRewrite": "/edge-api/stream",
+      "description": "Endpoint /edge-api/stream",
+      "type": "custom",
+      "tags": [
+        "streaming-service"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "streaming-service"
+    },
+    "/api/chat-service": {
+      "basePath": "/api/chat-service",
+      "pathRewrite": "/",
+      "description": "Endpoint /api/chat-service",
+      "type": "custom",
+      "tags": [
+        "chat-service"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "chat-service"
+    },
+    "/api/chat-service-edge-cloud": {
+      "basePath": "/api/chat-service-edge-cloud",
+      "pathRewrite": "/",
+      "description": "Endpoint /api/chat-service-edge-cloud",
+      "type": "custom",
+      "tags": [
+        "chat-service-edge-cloud"
+      ],
+      "public": true,
+      "showInDocumentation": true,
+      "secreted": false,
+      "acl": "true",
+      "backofficeAcl": {
+        "inherited": true
+      },
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "forceMicroserviceGatewayProxy": false,
+      "service": "chat-service-edge-cloud"
+    }
+  },
+  "groups": [],
+  "secrets": [
+    {
+      "secret": "OIS6EDeSnpGaNcdrZNqPNdXCpOD5C7nN",
+      "active": true,
+      "clientType": "api"
+    }
+  ],
+  "cmsCategories": {},
+  "cmsSettings": {
+    "accessGroupsExpression": "isBackoffice && groups.admin"
+  },
+  "cmsAnalytics": {},
+  "cmsDashboard": [],
+  "decorators": {
+    "preDecorators": {},
+    "postDecorators": {}
+  },
+  "services": {
+    "crud-service": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "crud-service",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/core/crud-service:3.2.3",
+      "environment": [
+        {
+          "name": "MONGODB_URL",
+          "value": "{{MONGODB_URL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "COLLECTION_DEFINITION_FOLDER",
+          "value": "/home/node/app/collections",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "SERVICE_PREFIX",
+          "value": "/",
+          "valueType": "plain"
+        },
+        {
+          "name": "USER_ID_HEADER_KEY",
+          "value": "miauserid",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        },
+        {
+          "name": "CRUD_LIMIT_CONSTRAINT_ENABLED",
+          "value": "{{CRUD_LIMIT_CONSTRAINT_ENABLED}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "EXPOSE_METRICS",
+          "value": "false",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "crud-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "crud-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "3.2.3",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "crud-service"
+      ],
+      "swaggerPath": "/documentation/json",
+      "configMaps": [
+        {
+          "name": "crud-service-collections",
+          "mountPath": "/home/node/app/collections",
+          "viewAsReadOnly": true,
+          "link": {
+            "targetSection": "collections"
+          }
+        }
+      ],
+      "secrets": [],
+      "sourceComponentId": "crud-service",
+      "mapEnvVarToMountPath": {
+        "collections": {
+          "type": "folder",
+          "envName": "COLLECTION_DEFINITION_FOLDER"
+        }
+      },
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "swagger-aggregator": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "swagger-aggregator",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/core/swagger-aggregator:3.3.0",
+      "environment": [
+        {
+          "name": "CONFIG_FILE_PATH",
+          "value": "/home/node/app/configs/config.json",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "swagger-aggregator",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "swagger-aggregator",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "3.3.0",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "api-docs"
+      ],
+      "swaggerPath": "",
+      "configMaps": [
+        {
+          "name": "swagger-aggregator-config",
+          "mountPath": "/home/node/app/configs",
+          "viewAsReadOnly": true
+        }
+      ],
+      "secrets": [],
+      "sourceComponentId": "swagger-aggregator",
+      "mapEnvVarToMountPath": {
+        "swagger-aggregator-config": {
+          "type": "file",
+          "envName": "CONFIG_FILE_PATH"
+        }
+      },
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "api-portal": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-nginx",
+      "name": "api-portal",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/api-portal/website:1.13.7",
+      "environment": [
+        {
+          "name": "HTTP_PORT",
+          "value": "8080",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "nginx",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "api-portal",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "api-portal",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "1.13.7",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-nginx",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/index.html",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/index.html",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "api-docs"
+      ],
+      "secrets": [],
+      "sourceComponentId": "api-portal",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "microservice-gateway": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "logParser": "mia-json",
+      "name": "microservice-gateway",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/core/microservice-gateway:6.0.5",
+      "environment": [
+        {
+          "name": "CONFIGURATION_PATH",
+          "value": "/home/node/app/configs/config.json",
+          "valueType": "plain"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "SERVICE_PREFIX",
+          "value": "/",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        },
+        {
+          "name": "DISABLE_STRICT_CONTENT_TYPE_CHECK",
+          "value": "false",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "microservice-gateway",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "microservice-gateway",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "6.0.5",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "orchestrator"
+      ],
+      "swaggerPath": "/documentation/json",
+      "configMaps": [
+        {
+          "name": "microservice-gateway-config",
+          "mountPath": "/home/node/app/configs",
+          "viewAsReadOnly": true
+        }
+      ],
+      "secrets": [],
+      "sourceComponentId": "microservice-gateway",
+      "mapEnvVarToMountPath": {
+        "microservice-gateway-config": {
+          "type": "file",
+          "envName": "CONFIGURATION_PATH"
+        }
+      },
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "authorization-service": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "logParser": "mia-json",
+      "name": "authorization-service",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/core/authorization-service:2.0.2",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "CONFIGURATION_PATH",
+          "value": "/configs",
+          "valueType": "plain"
+        },
+        {
+          "name": "CONFIGURATION_FILE_NAME",
+          "value": "auth",
+          "valueType": "plain"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "value": "isbackoffice",
+          "valueType": "plain"
+        },
+        {
+          "name": "SERVICE_VERSION",
+          "value": "2.0.2",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERINFO_URL",
+          "value": "http://auth0-client/userinfo",
+          "valueType": "plain"
+        },
+        {
+          "name": "CUSTOM_USER_ID_KEY",
+          "value": "sub",
+          "valueType": "plain"
+        },
+        {
+          "name": "HEADERS_TO_PROXY",
+          "value": "x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host",
+          "valueType": "plain"
+        },
+        {
+          "name": "AUTHORIZATION_STRICT_MODE_ENABLED",
+          "value": "true",
+          "valueType": "plain"
+        },
+        {
+          "name": "USER_PROPERTIES_TO_PROXY",
+          "value": "",
+          "valueType": "plain"
+        },
+        {
+          "name": "CLIENT_TYPE_HEADER_KEY",
+          "value": "client-type",
+          "valueType": "plain"
+        },
+        {
+          "name": "BACKOFFICE_USERINFO_URL",
+          "value": "",
+          "valueType": "plain"
+        },
+        {
+          "name": "CUSTOM_PERMISSIONS_KEY",
+          "value": "permissions",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "authorization-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "authorization-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "2.0.2",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "auth"
+      ],
+      "configMaps": [
+        {
+          "name": "authorization-service-config",
+          "mountPath": "/configs",
+          "viewAsReadOnly": true
+        }
+      ],
+      "sourceComponentId": "authorization-service",
+      "mapEnvVarToMountPath": {
+        "authorization-service-config": {
+          "type": "folder",
+          "envName": "CONFIGURATION_PATH"
+        }
+      },
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "api-gateway": {
+      "type": "custom",
+      "advanced": false,
+      "dockerImagePullSecrets": [
+        {
+          "name": "nexus-gcloud"
+        }
+      ],
+      "replicas": 1,
+      "logParser": "mia-nginx",
+      "additionalContainers": [
+        {
+          "name": "dnsmasq",
+          "dockerImage": "nexus.mia-platform.eu/core/dnsmasq:1.0.0",
+          "environment": [],
+          "resources": {
+            "cpuLimits": {
+              "min": "10m"
+            },
+            "memoryLimits": {
+              "max": "20Mi",
+              "min": "5Mi"
+            }
+          },
+          "probes": {
+            "liveness": {
+              "cmd": [
+                "/bin/sh",
+                "-c",
+                "netstat -lutanp | grep LISTEN | grep 53"
+              ],
+              "initialDelaySeconds": 15,
+              "periodSeconds": 20
+            },
+            "readiness": {
+              "cmd": [
+                "/bin/sh",
+                "-c",
+                "netstat -lutanp | grep LISTEN | grep 53"
+              ],
+              "initialDelaySeconds": 5,
+              "periodSeconds": 10
+            }
+          },
+          "args": [
+            "--listen",
+            "127.0.0.1:53",
+            "--default-resolver",
+            "--enable-search",
+            "--hostsfile=/etc/hosts"
+          ]
+        }
+      ],
+      "name": "api-gateway",
+      "description": "",
+      "dockerImage": "nexus.mia-platform.eu/core/api-gateway:4.1.4",
+      "environment": [],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "nginx",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "api-gateway",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "api-gateway",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "4.1.4",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-nginx",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/healthz",
+          "port": 8080,
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "path": "/healthz",
+          "port": 8080,
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "tags": [
+        "microgateway"
+      ],
+      "swaggerPath": "",
+      "configMaps": [
+        {
+          "name": "api-gateway-server",
+          "mountPath": "/etc/nginx/conf.d",
+          "viewAsReadOnly": true
+        },
+        {
+          "name": "api-gateway-platform",
+          "mountPath": "/etc/nginx/platform.d",
+          "viewAsReadOnly": true
+        },
+        {
+          "name": "api-gateway-customization",
+          "mountPath": "/etc/nginx/customization.d",
+          "viewAsReadOnly": true,
+          "link": {
+            "targetSection": "endpoints"
+          }
+        },
+        {
+          "name": "api-gateway-backoffice",
+          "mountPath": "/etc/nginx/backoffice.d",
+          "viewAsReadOnly": true
+        }
+      ],
+      "secrets": [],
+      "sourceComponentId": "api-gateway",
+      "containerPorts": [
+        {
+          "name": "frontend",
+          "from": 8080,
+          "to": 8080
+        },
+        {
+          "name": "backoffice",
+          "from": 8081,
+          "to": 8081
+        }
+      ],
+      "execPreStop": [
+        "sh",
+        "-c",
+        "sleep 5 && /usr/sbin/nginx -s quit"
+      ]
+    },
+    "location-service": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "location-service",
+      "description": "Return the best edge-node",
+      "dockerImage": "nexus.mia-platform.eu/edge-computing/location-service",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "MICROSERVICE_GATEWAY_SERVICE_NAME",
+          "value": "microservice-gateway",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERID_HEADER_KEY",
+          "value": "miauserid",
+          "valueType": "plain"
+        },
+        {
+          "name": "GROUPS_HEADER_KEY",
+          "value": "miausergroups",
+          "valueType": "plain"
+        },
+        {
+          "name": "CLIENTTYPE_HEADER_KEY",
+          "value": "client-type",
+          "valueType": "plain"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "value": "isbackoffice",
+          "valueType": "plain"
+        },
+        {
+          "name": "USER_PROPERTIES_HEADER_KEY",
+          "value": "miauserproperties",
+          "valueType": "plain"
+        },
+        {
+          "name": "MONGODB_URL",
+          "value": "{{MONGODB_SHORT_URL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "MINIMUM_NUMBER_OF_NODES_IN_REGION",
+          "value": "2",
+          "valueType": "plain"
+        },
+        {
+          "name": "MINIMUM_NUMBER_OF_NODES_IN_COUNTRY",
+          "value": "1",
+          "valueType": "plain"
+        },
+        {
+          "name": "NUMBER_OF_NEAREST_NODES",
+          "value": "5",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "location-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "location-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "latest",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 30,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 30,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "createdAt": "2021-11-24T12:03:28.743Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "user-node-service": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "user-node-service",
+      "dockerImage": "nexus.mia-platform.eu/edge-computing/user-node-service",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "valueType": "plain",
+          "value": "{{LOG_LEVEL}}"
+        },
+        {
+          "name": "MICROSERVICE_GATEWAY_SERVICE_NAME",
+          "valueType": "plain",
+          "value": "microservice-gateway"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "valueType": "plain",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+        },
+        {
+          "name": "HTTP_PORT",
+          "valueType": "plain",
+          "value": "3000"
+        },
+        {
+          "name": "USERID_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miauserid"
+        },
+        {
+          "name": "GROUPS_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miausergroups"
+        },
+        {
+          "name": "CLIENTTYPE_HEADER_KEY",
+          "valueType": "plain",
+          "value": "client-type"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "valueType": "plain",
+          "value": "isbackoffice"
+        },
+        {
+          "name": "USER_PROPERTIES_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miauserproperties"
+        },
+        {
+          "name": "MONGODB_URL",
+          "valueType": "plain",
+          "value": "{{MONGODB_SHORT_URL}}",
+          "description": "{{MONGODB_SHORT_URL}}"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "user-node-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "user-node-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "latest",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "createdAt": "2021-11-24T16:43:59.285Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "auth0-client": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "auth0-client",
+      "description": "Integrate with your Auth0 tenant using Mia-Platform core service Auth0 Client.",
+      "dockerImage": "nexus.mia-platform.eu/core/auth0-client:3.2.2",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "SESSION_SCOPE",
+          "value": "polimi-edge-computing",
+          "valueType": "plain"
+        },
+        {
+          "name": "ORIGINAL_PROTOCOL_HEADER",
+          "value": "x-forwarded-proto",
+          "valueType": "plain"
+        },
+        {
+          "name": "SERVICE_CONFIG_FILE_NAME",
+          "value": "config",
+          "valueType": "plain"
+        },
+        {
+          "name": "SERVICE_CONFIG_PATH",
+          "value": "/configs",
+          "valueType": "plain"
+        },
+        {
+          "name": "REDIS_HOSTS",
+          "value": "{{REDIS_HOSTS}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "REDIS_MODE",
+          "value": "normal",
+          "valueType": "plain"
+        },
+        {
+          "name": "MONGO_DB_URL",
+          "value": "{{MONGODB_URL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERS_COLLECTION_NAME",
+          "value": "auth0-users",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERS_DATABASE_NAME",
+          "value": "polimi-edge",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "auth0-client",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "auth0-client",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "3.2.2",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "configMaps": [
+        {
+          "name": "auth0-client-config",
+          "mountPath": "/configs"
+        }
+      ],
+      "sourceComponentId": "auth0-client",
+      "mapEnvVarToMountPath": {
+        "auth0-client-config": {
+          "type": "folder",
+          "envName": "SERVICE_CONFIG_PATH"
+        }
+      },
+      "createdAt": "2021-11-29T13:42:38.249Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "streaming-service": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "streaming-service",
+      "dockerImage": "nexus.mia-platform.eu/edge-computing/streaming-service",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "valueType": "plain",
+          "value": "{{LOG_LEVEL}}"
+        },
+        {
+          "name": "MICROSERVICE_GATEWAY_SERVICE_NAME",
+          "valueType": "plain",
+          "value": "microservice-gateway"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "valueType": "plain",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+        },
+        {
+          "name": "HTTP_PORT",
+          "valueType": "plain",
+          "value": "3000"
+        },
+        {
+          "name": "USERID_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miauserid"
+        },
+        {
+          "name": "GROUPS_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miausergroups"
+        },
+        {
+          "name": "CLIENTTYPE_HEADER_KEY",
+          "valueType": "plain",
+          "value": "client-type"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "valueType": "plain",
+          "value": "isbackoffice"
+        },
+        {
+          "name": "USER_PROPERTIES_HEADER_KEY",
+          "valueType": "plain",
+          "value": "miauserproperties"
+        },
+        {
+          "name": "MONGODB_URL",
+          "valueType": "plain",
+          "value": "{{MONGODB_SHORT_URL}}"
+        },
+        {
+          "name": "AUTH0_ACCESS_TOKEN",
+          "valueType": "secret",
+          "secretName": "auth0-secret",
+          "secretKey": "AUTH0_ACCESS_TOKEN"
+        },
+        {
+          "name": "AUTH0_API_URL",
+          "valueType": "plain",
+          "value": "https://polimi-edge-computing.eu.auth0.com"
+        },
+        {
+          "name": "AUDIENCE",
+          "valueType": "plain",
+          "value": "https://polimi-edge-computing.eu.auth0.com/api/v2/"
+        },
+        {
+          "name": "CLIENT_SECRET",
+          "valueType": "secret",
+          "secretName": "auth0-secret",
+          "secretKey": "CLIENT_SECRET"
+        },
+        {
+          "name": "CLIENT_ID",
+          "valueType": "plain",
+          "value": "tEydfVBObitQV0a048IAMuip1iQXPmTO"
+        },
+        {
+          "name": "API_SERVICE_HOST",
+          "valueType": "plain",
+          "value": "http://localhost:8888"
+        },
+        {
+          "name": "STREAMKEY_SECRET",
+          "valueType": "secret",
+          "secretName": "auth0-secret",
+          "secretKey": "STREAMKEY_SECRET"
+        },
+        {
+          "name": "EDGENODE_SECRET",
+          "valueType": "plain",
+          "value": "NeverGonnaGiveYouUp"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "streaming-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "streaming-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "latest",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "secrets": [],
+      "createdAt": "2021-12-11T11:17:29.270Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "frontend": {
+      "name": "frontend",
+      "description": "frontend",
+      "advanced": true,
+      "type": "custom",
+      "tags": [
+        "custom"
+      ],
+      "files": [
+        {
+          "name": "Service",
+          "path": "configuration/frontend.service.yml",
+          "kind": "service"
+        },
+        {
+          "name": "Deployment",
+          "path": "configuration/frontend.deployment.yml",
+          "kind": "deployment"
+        }
+      ],
+      "swaggerPath": "/documentation/json",
+      "labels": [
+        {
+          "name": "app",
+          "value": "frontend",
+          "readOnly": true,
+          "description": "Name of the microservice, in the service selector"
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "frontend",
+          "readOnly": true,
+          "description": "Name of the microservice"
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "readOnly": true,
+          "description": "Microservice kind, for the Console"
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "readOnly": true,
+          "description": "Project that own the microservice"
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "readOnly": true,
+          "description": "Identify who manage the service"
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "readOnly": true,
+          "description": "Environment used for the deploy"
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "readOnly": true,
+          "description": "Tenant owner of the project"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "readOnly": true,
+          "description": "Version of Mia-Platform used by the project"
+        }
+      ]
+    },
+    "chat-service": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "chat-service",
+      "description": "DSD Edge Computing Chat Service",
+      "dockerImage": "nexus.mia-platform.eu/edge-computing/chat-service",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "MICROSERVICE_GATEWAY_SERVICE_NAME",
+          "value": "microservice-gateway",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERID_HEADER_KEY",
+          "value": "miauserid",
+          "valueType": "plain"
+        },
+        {
+          "name": "GROUPS_HEADER_KEY",
+          "value": "miausergroups",
+          "valueType": "plain"
+        },
+        {
+          "name": "CLIENTTYPE_HEADER_KEY",
+          "value": "client-type",
+          "valueType": "plain"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "value": "isbackoffice",
+          "valueType": "plain"
+        },
+        {
+          "name": "USER_PROPERTIES_HEADER_KEY",
+          "value": "miauserproperties",
+          "valueType": "plain"
+        },
+        {
+          "name": "MONGODB_URL",
+          "value": "{{MONGODB_SHORT_URL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "TESTING",
+          "value": "true",
+          "valueType": "plain",
+          "description": "The service runs with testing part enable"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "chat-service",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "chat-service",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "latest",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "createdAt": "2021-12-21T13:01:26.134Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    },
+    "chat-service-edge-cloud": {
+      "type": "custom",
+      "advanced": false,
+      "replicas": 1,
+      "terminationGracePeriodSeconds": 30,
+      "logParser": "mia-json",
+      "name": "chat-service-edge-cloud",
+      "description": "DSD Edge Computing Chat Service for the edge ",
+      "dockerImage": "nexus.mia-platform.eu/edge-computing/chat-service-edge-cloud",
+      "environment": [
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}",
+          "valueType": "plain"
+        },
+        {
+          "name": "MICROSERVICE_GATEWAY_SERVICE_NAME",
+          "value": "microservice-gateway",
+          "valueType": "plain"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16",
+          "valueType": "plain"
+        },
+        {
+          "name": "HTTP_PORT",
+          "value": "3000",
+          "valueType": "plain"
+        },
+        {
+          "name": "USERID_HEADER_KEY",
+          "value": "miauserid",
+          "valueType": "plain"
+        },
+        {
+          "name": "GROUPS_HEADER_KEY",
+          "value": "miausergroups",
+          "valueType": "plain"
+        },
+        {
+          "name": "CLIENTTYPE_HEADER_KEY",
+          "value": "client-type",
+          "valueType": "plain"
+        },
+        {
+          "name": "BACKOFFICE_HEADER_KEY",
+          "value": "isbackoffice",
+          "valueType": "plain"
+        },
+        {
+          "name": "USER_PROPERTIES_HEADER_KEY",
+          "value": "miauserproperties",
+          "valueType": "plain"
+        },
+        {
+          "name": "MONGODB_URL",
+          "value": "{{MONGODB_SHORT_URL}}",
+          "valueType": "plain"
+        }
+      ],
+      "annotations": [
+        {
+          "name": "mia-platform.eu/deployment-date",
+          "value": "{{RELEASE_DATE}}",
+          "description": "Will contain the last deployment date",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-author",
+          "value": "{{AUTHOR_EMAIL}}",
+          "description": "Will contain the last committer e-mail address",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/commit-sha",
+          "value": "{{COMMIT_SHA}}",
+          "description": "Will contain the last commit SHA",
+          "readOnly": true
+        },
+        {
+          "name": "fluentbit.io/parser",
+          "value": "pino",
+          "description": "Pino parser annotation for Fluent Bit",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/version",
+          "value": "8.4.1",
+          "description": "Version of Mia-Platform used by the project",
+          "readOnly": true
+        }
+      ],
+      "labels": [
+        {
+          "name": "app",
+          "value": "chat-service-edge-cloud",
+          "description": "Name of the microservice, in the service selector",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/name",
+          "value": "chat-service-edge-cloud",
+          "description": "Name of the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/component",
+          "value": "custom",
+          "description": "Microservice kind, for the Console",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/part-of",
+          "value": "edge-computing",
+          "description": "Project that own the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/managed-by",
+          "value": "mia-platform",
+          "description": "Identify who manage the service",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/stage",
+          "value": "{{STAGE_TO_DEPLOY}}",
+          "description": "Environment used for the deploy",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/tenant",
+          "value": "polimi",
+          "description": "Tenant owner of the project",
+          "readOnly": true
+        },
+        {
+          "name": "mia-platform.eu/log-type",
+          "value": "mia-json",
+          "description": "Format of logs for the microservice",
+          "readOnly": true
+        },
+        {
+          "name": "app.kubernetes.io/version",
+          "value": "latest",
+          "description": "Tag of the Docker image",
+          "readOnly": true
+        }
+      ],
+      "resources": {
+        "cpuLimits": {},
+        "memoryLimits": {}
+      },
+      "probes": {
+        "liveness": {
+          "path": "/-/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20,
+          "timeoutSeconds": 1,
+          "failureThreshold": 3
+        },
+        "readiness": {
+          "path": "/-/ready",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10,
+          "timeoutSeconds": 1,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        }
+      },
+      "tags": [
+        "custom"
+      ],
+      "swaggerPath": "/documentation/json",
+      "createdAt": "2021-12-21T13:08:22.786Z",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80
+        }
+      ]
+    }
+  },
+  "configMaps": {
+    "crud-service-collections": {
+      "name": "crud-service-collections",
+      "gitFilesFolder": "crud-service",
+      "files": []
+    },
+    "swagger-aggregator-config": {
+      "name": "swagger-aggregator-config",
+      "gitFilesFolder": "swagger-aggregator",
+      "files": []
+    },
+    "microservice-gateway-config": {
+      "name": "microservice-gateway-config",
+      "gitFilesFolder": "microservice-gateway",
+      "files": []
+    },
+    "authorization-service-config": {
+      "name": "authorization-service-config",
+      "gitFilesFolder": "authorization-service",
+      "files": []
+    },
+    "api-gateway-server": {
+      "name": "api-gateway-server",
+      "gitFilesFolder": "api-gateway/conf.d",
+      "files": []
+    },
+    "api-gateway-platform": {
+      "name": "api-gateway-platform",
+      "gitFilesFolder": "api-gateway/platform.d",
+      "files": []
+    },
+    "api-gateway-customization": {
+      "name": "api-gateway-customization",
+      "gitFilesFolder": "api-gateway/customization.d",
+      "files": []
+    },
+    "api-gateway-backoffice": {
+      "name": "api-gateway-backoffice",
+      "gitFilesFolder": "api-gateway/backoffice.d",
+      "files": []
+    },
+    "auth0-client-config": {
+      "name": "auth0-client-config",
+      "files": [
+        {
+          "name": "config.json"
+        }
+      ]
+    }
+  },
+  "serviceSecrets": {
+    "auth0-secret": {
+      "name": "auth0-secret"
+    }
+  },
+  "apiVersions": [],
+  "unsecretedVariables": [],
+  "version": "0.43.0",
+  "servicesToDeploy": {
+    "crud-service": {
+      "type": "custom",
+      "name": "crud-service",
+      "tags": [
+        "crud-service"
+      ],
+      "version": "3.2.3",
+      "checksum": "f0530af855fc83057f6081363b781cfd5bc95397c6c0e66251e945eae724f36a"
+    },
+    "swagger-aggregator": {
+      "type": "custom",
+      "name": "swagger-aggregator",
+      "tags": [
+        "api-docs"
+      ],
+      "version": "3.3.0",
+      "checksum": "dc150a2d457e1b3d2773b7daa9f87d2dd82417b55c3286024353d65007f3a4ab"
+    },
+    "api-portal": {
+      "type": "custom",
+      "name": "api-portal",
+      "tags": [
+        "api-docs"
+      ],
+      "version": "1.13.7",
+      "checksum": "bd0a17a3fc4d0e2c06d75f83740eb5647b6bb7608b351c7f36022f514ed67579"
+    },
+    "microservice-gateway": {
+      "type": "custom",
+      "name": "microservice-gateway",
+      "tags": [
+        "orchestrator"
+      ],
+      "version": "6.0.5",
+      "checksum": "90d8b0e1dfa9b555de3f5c3fe743a0b20ea8d7898bf5fa605daae4e522daf551"
+    },
+    "authorization-service": {
+      "type": "custom",
+      "name": "authorization-service",
+      "tags": [
+        "auth"
+      ],
+      "version": "2.0.2",
+      "checksum": "64ae4999a975a9da88c68d359c68810dbe77f3c310dd8c12762ffaf0724b7185"
+    },
+    "api-gateway": {
+      "type": "custom",
+      "name": "api-gateway",
+      "tags": [
+        "microgateway"
+      ],
+      "version": "4.1.4",
+      "checksum": "b60fb1cf167f42c80e6f0f5a5f33947e63d1484c444e0b2ee4c1a3acade73c98"
+    },
+    "location-service": {
+      "type": "custom",
+      "name": "location-service",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "51478a1aeb8b5a22f55d6ce6d536e29c65045c1a2c75a345e2b607a739e6a3da"
+    },
+    "user-node-service": {
+      "type": "custom",
+      "name": "user-node-service",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "f6ec59f86da4bc97bc85c01a3415754dd08b6b8e5ff3fdfa5b7d15da746c2af9"
+    },
+    "auth0-client": {
+      "type": "custom",
+      "name": "auth0-client",
+      "tags": [
+        "custom"
+      ],
+      "version": "3.2.2",
+      "checksum": "e7c3382d2b23b128a9481f12fc6496043018202a099904d45ba39f417df7b053"
+    },
+    "streaming-service": {
+      "type": "custom",
+      "name": "streaming-service",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "28ab2c17d2b73723e0cf143f61cb2fdef2237a8312023cd849914a8d6840714b"
+    },
+    "frontend": {
+      "type": "custom",
+      "name": "frontend",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "a08885ba4c9d74929b27de7647f304df2130cde0a408a8d113d6abe21e41bc9a"
+    },
+    "chat-service": {
+      "type": "custom",
+      "name": "chat-service",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "e92cadea43cf5898a3362cc90c831ac549d692a52fe2d57d9f5ad67b63ee0e48"
+    },
+    "chat-service-edge-cloud": {
+      "type": "custom",
+      "name": "chat-service-edge-cloud",
+      "tags": [
+        "custom"
+      ],
+      "version": "latest",
+      "checksum": "63887fc43a280429dd6c6457bd649c98d56a9eb8f20cdf2a138fdec288dae62b"
+    },
+    "oauth-login-site": {
+      "type": "core",
+      "name": "oauth-login-site",
+      "tags": [
+        "core"
+      ],
+      "version": "7.1.2",
+      "checksum": "fea8c1eef0d956b1bf6d73e695185129d47f15b3041fdc98bda612f7cbb44097"
+    }
+  },
+  "platformVersion": "8.5.0",
+  "updatedAt": "2022-01-13T22:44:25.510Z"
+}

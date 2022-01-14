@@ -1,0 +1,245 @@
+{
+  "info": {
+    "title": "Chat service edge cloud",
+    "version": "1.0.0",
+    "description": "This service is used for the chat feature in the edge node architecture by the edge nodes"
+  },
+  "host": "edge-computing.polimi-ecb7249.gcp.mia-platform.eu",
+  "basePath": "/api/chat-service-edge-cloud/",
+  "swagger": "2.0",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Public",
+      "description": "No need for authentication"
+    }
+  ],
+  "paths": {
+    "/chatHistory/": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Returns the chat history of the users specified in the request",
+        "description": "Returns the chat history of the users specified in the request",
+        "parameters": [
+          {
+            "name": "userOneId",
+            "in": "query",
+            "description": "The user id of the first user of the chat history that the service has to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userTwoId",
+            "in": "query",
+            "description": "The user id of the second user of the chat history that the service has to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "valid requests, chat history found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ChatHistroy"
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    },
+    "/chatOverview/": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Returns the chat overview of the user specified in the request",
+        "description": "Returns the chat overview of the user specified in the request",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "The user id of the  user of the chat overview that the service has to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "valid requests, chat overview found",
+            "schema": {
+              "$ref": "#/definitions/ChatOverview"
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "The edge nodes sends a message with this request",
+        "description": "The edge nodes uses this request to store the messages in the database of the main server",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "message to store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request arrives correctly and the massage was stored"
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Errors"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ChatHistroy": {
+      "type": "object",
+      "required": [
+        "users",
+        "history"
+      ],
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User"
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MessageToSave"
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "userId",
+        "id"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        }
+      }
+    },
+    "MessageToSave": {
+      "type": "object",
+      "required": [
+        "senderPos",
+        "timeAndData",
+        "message"
+      ],
+      "properties": {
+        "senderPos": {
+          "type": "number"
+        },
+        "timeAndData": {
+          "format": "date-time"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "required": [
+        "senderId",
+        "receiverId",
+        "message",
+        "date"
+      ],
+      "properties": {
+        "senderId": {
+          "type": "string"
+        },
+        "receiverId": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Errors": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "number"
+        },
+        "service": {
+          "type": "string"
+        },
+        "code": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ChatOverview": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "lastMessage": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

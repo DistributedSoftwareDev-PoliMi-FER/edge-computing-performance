@@ -1,0 +1,21 @@
+<mat-card class="stream-card" [ngClass]="{'private': private}">
+    <mat-card-header>
+        <div></div>
+        <mat-card-title>{{stream.title}}</mat-card-title>
+        <mat-card-subtitle>Streamer: {{stream.author}}
+        <p *ngIf="private" class="private-info">Private stream</p>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]=stream.thumbnail alt="Stream thumbnail">
+    <mat-card-content>
+        <p>
+            {{stream.description}}
+        </p>
+    </mat-card-content>
+
+    <mat-card-footer>
+        <a (click)="navigateToStream()">
+            <button mat-raised-button  color="primary" >Watch stream</button>
+        </a>
+    </mat-card-footer>
+</mat-card>

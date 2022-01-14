@@ -1,0 +1,27 @@
+include:
+  # job template
+  - project: 'platform/pipelines-templates'
+    file: '/deploy/deploy-job-v3.yml'
+    ref: 'master'
+
+prod:
+  stage: release
+  extends: .deploy_job
+
+  variables:
+    ENVIRONMENT_PREFIX: "prod_"
+
+  only:
+    variables:
+      - $ENVIRONMENT_TO_DEPLOY == "prod"
+
+edge:
+  stage: release
+  extends: .deploy_job
+
+  variables:
+    ENVIRONMENT_PREFIX: "edge_"
+
+  only:
+    variables:
+      - $ENVIRONMENT_TO_DEPLOY == "edge"

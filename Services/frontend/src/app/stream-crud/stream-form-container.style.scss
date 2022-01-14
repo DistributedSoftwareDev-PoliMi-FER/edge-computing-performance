@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);
+
+
+@mixin form-container {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 10px;
+  min-width: 230px;
+  line-height: 1.4em;
+
+  & p {
+    margin: 0 0 20px;
+    font-size: 1em;
+    letter-spacing: 1px;
+    opacity: 0.8;
+
+    & span {
+      display: block;
+      font-size: 0.8em;
+      color: #2980b9;
+    }
+  }
+
+  & * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+}
+
+@mixin centered {
+  margin: 50px auto;
+}

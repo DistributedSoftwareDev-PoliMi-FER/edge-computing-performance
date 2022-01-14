@@ -1,0 +1,21 @@
+#!/bin/bash
+
+machinectl import-fs ./testingBuild/ machine-0
+
+for ((counter=${NUM}; counter>0; counter--))
+do
+mkdir /var/lib/machines/"machine-$counter"
+mkdir /var/lib/machines/"machine_upper-$counter"
+mkdir /var/lib/machines/"work-$counter"
+mount -t overlay overlay -o lowerdir=/var/lib/machines/machine-0,upperdir=/var/lib/machines/"machine_upper-$counter",workdir=/var/lib/machines/"work-$counter" /var/lib/machines/"machine-$counter"
+echo "created machine-$counter"
+done
+
+for ((counter=${NUM}; counter>=0; counter--))
+do
+echo -e "[Exec]\nPrivateUsers=no\n\
+[Network]\n\
+VirtualEthernet=yes\n\
+Bridge=br2\n\
+Private=yes" > /etc/systemd/nspawn/"machine-$counter".nspawn
+done

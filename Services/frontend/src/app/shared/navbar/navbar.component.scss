@@ -1,0 +1,16 @@
+:host {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration:none;
+    cursor:pointer;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+}

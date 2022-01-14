@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: default-cert
+spec:
+  issuerRef:
+    name: "cert-manager-issuer"
+    kind: ClusterIssuer
+  commonName: "edge-computing.polimi-ecb7249.gcp.mia-platform.eu"
+  dnsNames:
+    - "edge-computing.polimi-ecb7249.gcp.mia-platform.eu"
+    - "edge-computing.cms-polimi-ecb7249.gcp.mia-platform.eu"
+  secretName: default-cert

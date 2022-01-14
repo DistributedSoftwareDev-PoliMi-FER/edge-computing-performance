@@ -1,0 +1,238 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Location Service",
+    "description": "The location service is used for localize the closest edge node to the client"
+  },
+  "host": "edge-computing.polimi-ecb7249.gcp.mia-platform.eu",
+  "basePath": "/api/location-service",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Public",
+      "description": "No need for authentication"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Returns the list of the nearest edge nodes",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of edge nodes IPs",
+            "schema": {
+              "items": {},
+              "type": "array"
+            }
+          },
+          "422": {
+            "description": "No nearby nodes",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Adds a new edge node",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InputEdgeNode"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Edge node added",
+            "schema": {
+              "$ref": "#/definitions/EdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad syntax",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Updates a new edge node",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InputEdgeNode"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Edge node updated",
+            "schema": {
+              "$ref": "#/definitions/EdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad syntax",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Edge node to update not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Deletes a new edge node",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Edge node deleted",
+            "schema": {
+              "$ref": "#/definitions/EdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad syntax",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Edge node to update not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "EdgeNode": {
+      "type": "object",
+      "required": [
+        "id",
+        "ip",
+        "country",
+        "region"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
+    "InputEdgeNode": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "subMessage"
+      ],
+      "properties": {
+        "code": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.2.1
+    fluentbit.io/parser: nginx
+  labels:
+    app: frontend
+    app.kubernetes.io/name: frontend
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+        mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+        mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+        fluentbit.io/parser: nginx
+      labels:
+        app: frontend
+        app.kubernetes.io/name: frontend
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-nginx
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: frontend
+          image: nexus.mia-platform.eu/edge-computing/frontend
+          imagePullPolicy: Always
+          volumeMounts: []
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: '8080'
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              port: 8080
+              path: /index.html
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 1
+            failureThreshold: 3
+            httpGet:
+              port: 8080
+              path: /index.html
+      volumes: []

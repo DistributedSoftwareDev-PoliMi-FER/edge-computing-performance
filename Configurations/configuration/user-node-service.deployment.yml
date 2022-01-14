@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-node-service
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.4.1
+    fluentbit.io/parser: pino
+  labels:
+    app: user-node-service
+    app.kubernetes.io/name: user-node-service
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-node-service
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: user-node-service
+        app.kubernetes.io/name: user-node-service
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: user-node-service
+          image: nexus.mia-platform.eu/edge-computing/user-node-service
+          imagePullPolicy: Always
+          volumeMounts: []
+          args: []
+          env:
+            - name: LOG_LEVEL
+              value: '{{LOG_LEVEL}}'
+            - name: MICROSERVICE_GATEWAY_SERVICE_NAME
+              value: microservice-gateway
+            - name: TRUSTED_PROXIES
+              value: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+            - name: HTTP_PORT
+              value: '3000'
+            - name: USERID_HEADER_KEY
+              value: miauserid
+            - name: GROUPS_HEADER_KEY
+              value: miausergroups
+            - name: CLIENTTYPE_HEADER_KEY
+              value: client-type
+            - name: BACKOFFICE_HEADER_KEY
+              value: isbackoffice
+            - name: USER_PROPERTIES_HEADER_KEY
+              value: miauserproperties
+            - name: MONGODB_URL
+              value: '{{MONGODB_SHORT_URL}}'
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              port: 3000
+              path: /-/ready
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 1
+            failureThreshold: 3
+            httpGet:
+              port: 3000
+              path: /-/healthz
+      volumes: []

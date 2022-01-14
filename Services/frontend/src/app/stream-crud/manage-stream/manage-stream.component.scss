@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);
+:host {
+  .container {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 10px;
+    min-width: 230px;
+    line-height: 1.4em;
+
+    .invited-panel {
+      width: 30%;
+      margin-bottom: 20px;
+    }
+
+    & img {
+      max-width: 100%;
+      display: block;
+      width: 40%;
+      opacity: 0.85;
+      margin: 20px auto;
+    }
+
+    & figcaption {
+      width: 100%;
+      padding: 25px;
+      position: relative;
+    }
+
+    & h2 {
+      font-size: 2em;
+      margin: 0 0 25px;
+
+      & span {
+        display: block;
+        font-size: 0.5em;
+        color: #2980b9;
+      }
+    }
+
+    & p {
+      margin: 0 0 20px;
+      font-size: 1em;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      & span {
+        display: block;
+        font-size: 0.8em;
+        color: #2980b9;
+      }
+    }
+
+    & summary  {
+      display: block;
+      font-size: 1em;
+      color: #2980b9;
+    }
+
+    & details {
+      margin-bottom: 30px;
+    }
+  }
+
+  .update-stream-button {
+      margin-right: 15px;
+  }
+
+  .container * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+}

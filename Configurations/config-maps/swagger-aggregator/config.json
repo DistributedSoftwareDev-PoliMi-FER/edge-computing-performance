@@ -1,0 +1,89 @@
+{
+  "title": "Edge Computing",
+  "version": "{{COMMIT_SHA}}",
+  "services": [
+    {
+      "type": "url",
+      "url": "http://location-service/documentation/json",
+      "prefix": "/api/location-service"
+    },
+    {
+      "type": "url",
+      "url": "http://user-node-service/documentation/json",
+      "prefix": "/api/user-node-service"
+    },
+    {
+      "type": "url",
+      "url": "http://streaming-service/documentation/json",
+      "prefix": "/api/stream"
+    },
+    {
+      "type": "url",
+      "url": "http://streaming-service/documentation/json",
+      "prefix": "/edge-api/stream"
+    },
+    {
+      "type": "url",
+      "url": "http://frontend/documentation/json",
+      "prefix": "/"
+    },
+    {
+      "type": "url",
+      "url": "http://chat-service/documentation/json",
+      "prefix": "/api/chat-service"
+    },
+    {
+      "type": "url",
+      "url": "http://chat-service-edge-cloud/documentation/json",
+      "prefix": "/api/chat-service-edge-cloud"
+    },
+    {
+      "type": "url",
+      "prefix": "/",
+      "url": "http://crud-service/documentation/json",
+      "includePaths": [],
+      "transformPaths": {}
+    }
+  ],
+  "securityInfo": {
+    "/documentations/api-portal/*": {},
+    "/documentations/api-portal": {},
+    "/documentations/api-portal/api/*": {},
+    "/documentations/api-portal/api": {},
+    "/documentations/swagger/*": {},
+    "/documentations/swagger": {},
+    "/documentations/openapi/*": {},
+    "/documentations/openapi": {},
+    "/api/location-service/*": {},
+    "/api/location-service": {},
+    "/api/user-node-service/*": {},
+    "/api/user-node-service": {},
+    "/api/stream/*": {},
+    "/api/stream": {},
+    "//*": {},
+    "/": {},
+    "/edge-api/stream/*": {},
+    "/edge-api/stream": {},
+    "/api/chat-service/*": {},
+    "/api/chat-service": {},
+    "/api/chat-service-edge-cloud/*": {},
+    "/api/chat-service-edge-cloud": {}
+  },
+  "baseSwagger": {
+    "swagger": "2.0",
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "securityDefinitions": {
+      "APISecretHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "secret"
+      }
+    }
+  },
+  "description": "Polimi students project about Edge Computing"
+}

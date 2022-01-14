@@ -1,0 +1,27 @@
+{
+    "clients": {
+        "cms": {
+            "auth0Url": "{{AUTH0_TENANT_URL}}",
+            "clientId": "{{AUTH0_CMS_CLIENT_ID}}",
+            "clientSecret": "{{AUTH0_CMS_CLIENT_SECRET}}",
+            "redirectUrl": "{{AUTH0_REDIRECT_URL}}",
+            "scopes": [
+                "offline_access",
+                "profile",
+                "email",
+                "website"
+            ],
+            "audience": "{{AUTH0_CMS_AUDIENCE}}"
+        }
+    },
+    "defaultClient": "frontend",
+    "managementClient": {
+        "auth0Url": "{{AUTH0_TENANT_URL}}",
+        "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
+        "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}"
+    },
+    "customClaimsNamespaces": [
+        "https://mia-platform.eu/app_metadata",
+        "https://mia-platform.eu/user_metadata"
+    ]
+}

@@ -1,0 +1,10 @@
+apiVersion: v1
+data: {}
+kind: ConfigMap
+metadata:
+  name: crud-service-collections
+  labels:
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi

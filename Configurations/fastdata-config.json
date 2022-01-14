@@ -1,0 +1,71 @@
+{
+  "systems": {},
+  "castFunctions": {
+    "defaultIdentity": {
+      "castFunctionId": "defaultIdentity",
+      "name": "defaultIdentity",
+      "dataType": "all",
+      "casting": "module.exports = function castIdentity (value, fieldName, logger) {\n  return value\n}",
+      "type": "default"
+    },
+    "defaultCastToString": {
+      "castFunctionId": "defaultCastToString",
+      "name": "defaultCastToString",
+      "dataType": "string",
+      "casting": "module.exports = function castToString (value, fieldName, logger) {\n  if (value === null) {return null}\n  if (value === undefined) {return undefined}\n  if (typeof value === 'object') {return JSON.stringify(value)}\n  return String(value)\n}\n",
+      "type": "default"
+    },
+    "defaultCastToInteger": {
+      "castFunctionId": "defaultCastToInteger",
+      "name": "defaultCastToInteger",
+      "dataType": "number",
+      "casting": "module.exports = function castToInt (value, fieldName, logger) {\n  if (value === null) {return null}\n  if (value === undefined) {return undefined}\n  const number = Number(value)\n  if (Number.isNaN(number)) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  return parseInt(number, 10)\n}\n",
+      "type": "default"
+    },
+    "defaultCastToFloat": {
+      "castFunctionId": "defaultCastToFloat",
+      "name": "defaultCastToFloat",
+      "dataType": "number",
+      "casting": "module.exports = function castToFloat (value, fieldName, logger) {\n  if (value === null) {return null}\n  if (value === undefined) {return undefined}\n  const number = Number(value)\n  if (Number.isNaN(number)) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  return number\n}\n",
+      "type": "default"
+    },
+    "defaultCastUnitTimestampToISOString": {
+      "castFunctionId": "defaultCastUnitTimestampToISOString",
+      "name": "defaultCastUnitTimestampToISOString",
+      "dataType": "string",
+      "casting": "module.exports = function castUnitTimestampToISOString (value, fieldName, logger) {\n  if (value === null) {return null}\n  if (value === undefined) {return undefined}\n  const date = new Date(value)\n  if (date.toString() !== 'Invalid Date') {return date.toISOString()}\n  logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n  return undefined\n}\n",
+      "type": "default"
+    },
+    "defaultCastStringToBoolean": {
+      "castFunctionId": "defaultCastStringToBoolean",
+      "name": "defaultCastStringToBoolean",
+      "dataType": "boolean",
+      "casting": "module.exports = function castStringToBoolean (value, fieldName, logger) {\n  if (value === 'false') {return false}\n  if (value === 'true') {return true}\n  if (value === null) {return null}\n  if (value === undefined) {return undefined}\n  logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n  return undefined\n}\n",
+      "type": "default"
+    },
+    "defaultCastToDate": {
+      "castFunctionId": "defaultCastToDate",
+      "name": "defaultCastToDate",
+      "dataType": "Date",
+      "casting": "module.exports = function castToDate (value, fieldName, logger) {\n  const date = new Date(value)\n  if (date.toString() !== 'Invalid Date') {\n    return date\n  }\n  logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n  return undefined\n}",
+      "type": "default"
+    },
+    "defaultCastToObject": {
+      "castFunctionId": "defaultCastToObject",
+      "name": "defaultCastToObject",
+      "dataType": "RawObject",
+      "casting": "module.exports = function castToObject (value, fieldName, logger) {\n  if (value === null) {return null}\n  let valueToCast = value\n  try {\n    if(typeof valueToCast === 'string') {valueToCast = JSON.parse(valueToCast)}\n  } catch(e) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  if (typeof valueToCast !== 'object' || valueToCast.constructor !== Object) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  return valueToCast\n}",
+      "type": "default"
+    },
+    "defaultCastToArrayOfObject": {
+      "castFunctionId": "defaultCastToArrayOfObject",
+      "name": "defaultCastToArrayOfObject",
+      "dataType": "Array_RawObject",
+      "casting": "module.exports = function castToArrayOfObject (value, fieldName, logger) {\n  if (value === null) { return null }\n  let valueToCast = value\n  try {\n    if(typeof valueToCast === 'string') {valueToCast = JSON.parse(valueToCast)}\n  } catch(e) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  if (typeof valueToCast !== 'object' || valueToCast.constructor !== Array ||\n  valueToCast.some(element => typeof element !== 'object' || element.constructor !== Object)) {\n    logger.debug({fieldName}, 'is invalid, will be casted to undefined')\n    return undefined\n  }\n  return valueToCast\n}",
+      "type": "default"
+    }
+  },
+  "singleViews": {},
+  "version": "0.2.0",
+  "updatedAt": "2022-01-13T22:44:25.510Z"
+}

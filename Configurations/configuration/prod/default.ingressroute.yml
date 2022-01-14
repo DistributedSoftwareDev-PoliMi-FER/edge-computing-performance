@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: default-ingress
+  labels:
+    app.kubernetes.io/instance: "ingress-controller"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`edge-computing.polimi-ecb7249.gcp.mia-platform.eu`)
+      middlewares:
+        - name: "ingress-controller-hsts-headers"
+          namespace: mia-platform
+      kind: Rule
+      services:
+        - name: api-gateway
+          port: 8080
+    - match: Host(`edge-computing.cms-polimi-ecb7249.gcp.mia-platform.eu`)
+      middlewares:
+        - name: "ingress-controller-hsts-headers"
+          namespace: mia-platform
+      kind: Rule
+      services:
+        - name: api-gateway
+          port: 8081
+  tls:
+    secretName: default-cert

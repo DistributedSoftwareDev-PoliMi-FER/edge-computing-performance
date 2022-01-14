@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-gateway
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.5.0
+  labels:
+    app: microservice-gateway
+    app.kubernetes.io/name: microservice-gateway
+    app.kubernetes.io/version: 6.0.5
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: null
+  selector:
+    app: microservice-gateway

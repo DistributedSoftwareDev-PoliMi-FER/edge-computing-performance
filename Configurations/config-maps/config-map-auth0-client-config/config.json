@@ -1,0 +1,31 @@
+{
+  "clients": {
+    "api": {
+      "auth0Url": "{{AUTH0_TENANT_URL}}",
+      "clientId": "{{AUTH0_API_CLIENT_ID}}",
+      "clientSecret": "{{AUTH0_API_CLIENT_SECRET}}",
+      "redirectUrl": "{{AUTH0_REDIRECT_URL}}",
+      "supportedConnections": [
+        "{{AUTH0_CONNECTION}}"
+      ],
+      "defaultConnection": "{{AUTH0_CONNECTION}}",
+      "scopes": [
+        "offline_access",
+        "profile"
+      ]
+    }
+  },
+  "managementClient": {
+    "auth0Url": "{{AUTH0_TENANT_URL}}",
+    "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
+    "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}",
+    "supportedConnections": [
+      "{{AUTH0_CONNECTION}}"
+    ],
+    "defaultCreateUserConnection": "{{AUTH0_CONNECTION}}"
+  },
+  "customClaimsNamespaces": [
+    "https://edge-computing.polimi-ecb7249.gcp.mia-platform.eu/app_metadata",
+    "https://edge-computing.polimi-ecb7249.gcp.mia-platform.eu/user_metadata"
+  ]
+}

@@ -1,0 +1,6 @@
+*.DS_Store
+.idea
+.vscode
+*.bck
+*.env
+interpolated-files

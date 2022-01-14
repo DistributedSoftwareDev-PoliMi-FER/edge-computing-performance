@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth0-client
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.4.1
+    fluentbit.io/parser: pino
+  labels:
+    app: auth0-client
+    app.kubernetes.io/name: auth0-client
+    app.kubernetes.io/version: 3.2.2
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth0-client
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: auth0-client
+        app.kubernetes.io/name: auth0-client
+        app.kubernetes.io/version: 3.2.2
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: auth0-client
+          image: nexus.mia-platform.eu/core/auth0-client:3.2.2
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: auth0-client-config
+              mountPath: /configs
+              readOnly: true
+          args: []
+          env:
+            - name: LOG_LEVEL
+              value: '{{LOG_LEVEL}}'
+            - name: HTTP_PORT
+              value: '3000'
+            - name: SESSION_SCOPE
+              value: polimi-edge-computing
+            - name: ORIGINAL_PROTOCOL_HEADER
+              value: x-forwarded-proto
+            - name: SERVICE_CONFIG_FILE_NAME
+              value: config
+            - name: SERVICE_CONFIG_PATH
+              value: /configs
+            - name: REDIS_HOSTS
+              value: '{{REDIS_HOSTS}}'
+            - name: REDIS_MODE
+              value: normal
+            - name: MONGO_DB_URL
+              value: '{{MONGODB_URL}}'
+            - name: USERS_COLLECTION_NAME
+              value: auth0-users
+            - name: USERS_DATABASE_NAME
+              value: polimi-edge
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              port: 3000
+              path: /-/ready
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 1
+            failureThreshold: 3
+            httpGet:
+              port: 3000
+              path: /-/healthz
+      volumes:
+        - name: auth0-client-config
+          configMap:
+            name: auth0-client-config

@@ -1,0 +1,6 @@
+[Unit]
+Description=Manage public IP of edge node.
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/local/bin/edgeIPcheck.sh

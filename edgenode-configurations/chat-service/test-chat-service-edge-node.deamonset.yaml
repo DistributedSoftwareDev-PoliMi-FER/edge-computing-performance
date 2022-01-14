@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: DaemonSet 
+metadata:
+  name: chat-service-edge-node
+  namespace: edge-computing
+  annotations:
+    mia-platform.eu/version: 8.2.1
+    fluentbit.io/parser: pino
+  labels:
+    app: chat-service-edge-node
+    app.kubernetes.io/name: chat-service-edge-node
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: prod
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-json
+spec:
+  selector:
+    matchLabels:
+      app: chat-service-edge-node
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: pino
+      labels:
+        app: chat-service-edge-node
+        app.kubernetes.io/name: chat-service-edge-node
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: prod
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-json
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        node-role.kubernetes.io/agent: ""
+        node-role.kubernetes.io/edge: ""
+      imagePullSecrets:
+        - name: nexus-gcloud
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: chat-service-edge-node
+          image: nexus.mia-platform.eu/edge-computing/chat-service-edge-node
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          resources:
+            limits:
+              memory: 150Mi
+              cpu: 100m
+            requests:
+              memory: 60Mi
+              cpu: 1m
+          volumeMounts: []
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: '3001'
+            - name: LOG_LEVEL
+              value: 'info'
+            - name: API_URL
+              value: 'https://edge-computing.polimi-ecb7249.gcp.mia-platform.eu'
+            - name: ENCRYPTION_PASSWORD
+              value: 'aAbBcCdDeEfFgGhHaAbBcCdDeEfFgGhH'
+            - name: ENCRYPTION_VERIFICATOR
+              value: 'originaluser'
+            - name: AUTH0_URL
+              value: 'https://polimi-edge-computing.eu.auth0.com'
+            - name: AUTH0_CLIENT_ID
+              value: 'tEydfVBObitQV0a048IAMuip1iQXPmTO'
+            - name: AUTH0_CLIENT_SECRET
+              value: 'HPSnoxep7F9k-sOmZ6NwhpmLZTk9PzySVT_ag2auyzefzZej8OmXxYJiF1wTyrFM'
+            - name: AUTH0_AUDIENCE
+              value: 'https://polimi-edge-computing.eu.auth0.com/api/v2/'
+            - name: M2M_AUTH_PW
+              value: 'm2m_Password'
+            - name: NODE_ENV
+              value: 'testing'     
+            - name: SEND_TO_PORT
+              value: '8080'    
+            - name: BACKUP_FIRST
+              value: 'false'    
+            - name: UNSENT_MESSAGES_INTERVAL
+              value: '100'
+      volumes: []

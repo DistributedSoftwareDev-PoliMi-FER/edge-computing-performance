@@ -1,0 +1,13 @@
+#!/bin/bash
+
+machinectl remove machine-0
+
+for ((counter=${NUM}; counter>0; counter--))
+do
+umount /var/lib/machines/"machine-$counter"
+rm -rf /var/lib/machines/"machine-$counter"
+rm -rf /var/lib/machines/"machine_upper-$counter"
+rm -rf /var/lib/machines/"work-$counter"
+rm /etc/systemd/nspawn/"machine-$counter".nspawn
+echo "removed machine-$counter"
+done

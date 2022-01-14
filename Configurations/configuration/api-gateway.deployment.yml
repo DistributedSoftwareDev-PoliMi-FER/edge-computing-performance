@@ -1,0 +1,129 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  annotations:
+    mia-platform.eu/deployment-date: '{{RELEASE_DATE}}'
+    mia-platform.eu/commit-author: '{{AUTHOR_EMAIL}}'
+    mia-platform.eu/commit-sha: '{{COMMIT_SHA}}'
+    mia-platform.eu/version: 8.4.1
+    fluentbit.io/parser: nginx
+  labels:
+    app: api-gateway
+    app.kubernetes.io/name: api-gateway
+    app.kubernetes.io/version: 4.1.4
+    app.kubernetes.io/component: custom
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi
+    mia-platform.eu/log-type: mia-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      annotations:
+        fluentbit.io/parser: nginx
+      labels:
+        app: api-gateway
+        app.kubernetes.io/name: api-gateway
+        app.kubernetes.io/version: 4.1.4
+        app.kubernetes.io/component: custom
+        app.kubernetes.io/part-of: edge-computing
+        app.kubernetes.io/managed-by: mia-platform
+        mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+        mia-platform.eu/tenant: polimi
+        mia-platform.eu/log-type: mia-nginx
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      containers:
+        - name: api-gateway
+          image: nexus.mia-platform.eu/core/api-gateway:4.1.4
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: api-gateway-server
+              mountPath: /etc/nginx/conf.d
+              readOnly: true
+            - name: api-gateway-platform
+              mountPath: /etc/nginx/platform.d
+              readOnly: true
+            - name: api-gateway-customization
+              mountPath: /etc/nginx/customization.d
+              readOnly: true
+            - name: api-gateway-backoffice
+              mountPath: /etc/nginx/backoffice.d
+              readOnly: true
+          args: []
+          env: []
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - '-c'
+                  - sleep 5 && /usr/sbin/nginx -s quit
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            httpGet:
+              port: 8080
+              path: /healthz
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            httpGet:
+              port: 8080
+              path: /healthz
+        - name: dnsmasq
+          image: nexus.mia-platform.eu/core/dnsmasq:1.0.0
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              memory: 5Mi
+              cpu: 10m
+          volumeMounts: []
+          args:
+            - '--listen'
+            - 127.0.0.1:53
+            - '--default-resolver'
+            - '--enable-search'
+            - '--hostsfile=/etc/hosts'
+          env: []
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            exec:
+              command:
+                - /bin/sh
+                - '-c'
+                - netstat -lutanp | grep LISTEN | grep 53
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            exec:
+              command:
+                - /bin/sh
+                - '-c'
+                - netstat -lutanp | grep LISTEN | grep 53
+      volumes:
+        - name: api-gateway-server
+          configMap:
+            name: api-gateway-server
+        - name: api-gateway-platform
+          configMap:
+            name: api-gateway-platform
+        - name: api-gateway-customization
+          configMap:
+            name: api-gateway-customization
+        - name: api-gateway-backoffice
+          configMap:
+            name: api-gateway-backoffice

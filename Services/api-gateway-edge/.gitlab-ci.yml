@@ -1,0 +1,22 @@
+
+include:
+  - file: "/common/base-build.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+  - file: "/common/docker-build-images.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+  
+default:
+  image: node:12.22.6-alpine
+
+test:
+  stage: test
+  script:
+    - 'echo "TODO"'
+.docker-job:
+  variables:
+    COMMIT_SHA_FILEPATH: ./commit.sha
+
+variables:
+  IMAGE_NAME: edge-computing/nginx-api-gateway-edge

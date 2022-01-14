@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for ((counter=${NUM}; counter>0; counter--))
+do
+machinectl start "machine-$counter" 
+echo "started machine-$counter"
+done

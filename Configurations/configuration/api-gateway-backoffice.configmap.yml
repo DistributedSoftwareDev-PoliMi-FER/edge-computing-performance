@@ -1,0 +1,45 @@
+apiVersion: v1
+data:
+  serverConf.conf: |
+    include /etc/nginx/customization.d/rate-limit-usage.conf;
+    include /etc/nginx/customization.d/auth-usage.conf;
+    include /etc/nginx/customization.d/auth-location.conf;
+    include /etc/nginx/customization.d/backoffice-server-extension.conf;
+
+    location = / {
+      return 308 '$original_request_scheme://$original_request_host/app_dataentry/';
+    }
+
+    set $isbackoffice "true";
+
+    location /error401.html {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 302 '$original_request_scheme://$original_request_host/web-login?redirect=$original_request_uri$is_args$args';
+    }
+
+    location /error401.json {
+      include /etc/nginx/customization.d/header-debug.conf;
+
+      return 401 $content_401;
+    }
+
+    location / {
+      error_page 401 = /error401.$extension_by_http_accept;
+
+      include /etc/nginx/customization.d/backoffice-root-location-extension.conf;
+
+      include /etc/nginx/customization.d/header-debug.conf;
+      include /etc/nginx/customization.d/auth-set-userid.conf;
+      include /etc/nginx/set_proxy_headers.conf;
+
+      proxy_pass http://$proxy_backoffice_name$proxy_backoffice_url;
+    }
+kind: ConfigMap
+metadata:
+  name: api-gateway-backoffice
+  labels:
+    app.kubernetes.io/part-of: edge-computing
+    app.kubernetes.io/managed-by: mia-platform
+    mia-platform.eu/stage: '{{STAGE_TO_DEPLOY}}'
+    mia-platform.eu/tenant: polimi

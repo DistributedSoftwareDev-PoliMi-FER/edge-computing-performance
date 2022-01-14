@@ -1,0 +1,8 @@
+secrets:
+  - name: "nexus-gcloud"
+    when: "always"
+    docker:
+      username: "{{NEXUS_USER}}"
+      password: "{{NEXUS_TOKEN}}"
+      email: "operations@mia-platform.eu"
+      server: "{{NEXUS_URL}}"

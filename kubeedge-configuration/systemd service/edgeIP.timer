@@ -1,0 +1,9 @@
+[Unit]
+Description=Edge node public IP service timer
+
+[Timer]
+OnUnitActiveSec=12h
+OnBootSec=1h
+
+[Install]
+WantedBy=timers.target

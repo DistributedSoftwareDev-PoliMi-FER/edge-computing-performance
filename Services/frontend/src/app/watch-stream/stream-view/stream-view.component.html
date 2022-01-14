@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div class="row pt-3">
+    <div class="col-6">
+      <h1>{{streamData.title}}</h1>
+    </div>
+  </div>
+
+  <div class="row pt-2">
+
+    <div *ngIf="streamData.status === 'ONLINE'"
+         class="col-6">
+      <p ><span class="dot"></span> Online!</p>
+    </div>
+    <div *ngIf="streamData.status === 'OFFLINE'"
+         class="col-6">
+      <p ><span class="dot offline"></span> Offline</p>
+    </div>
+
+    <div class="col-6 d-flex justify-content-end">
+      Streamer: {{streamData.author}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <edge-player [streamLink]="streamUrl">
+      </edge-player>
+    </div>
+  </div>
+
+
+
+</div>

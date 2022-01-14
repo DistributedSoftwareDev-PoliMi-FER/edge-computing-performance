@@ -1,0 +1,38 @@
+<div class="panel-parent">
+    <div class="container">
+        <div class="row">
+            <div class="col-7 mt-3">
+                <h3 class="chat-header" >Your chats</h3>
+            </div>
+            <div class="col-5 d-flex">
+                <button class="new-chat"
+                        mat-mini-fab
+                        [disabled]="!isReady"
+                        (click)="openUserLookup()">+</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="search-input" appearance="fill">
+                <mat-label>Search your chats...</mat-label>
+                <input  matInput [(ngModel)]="searchString">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <mat-divider></mat-divider>
+    <div *ngIf="isReady else loadingInfo">
+        <edge-message-overview *ngFor="let participant of messages"
+                               [overview]="participant"
+                               [hidden]="isChatHidden(participant)"
+                                (participantClicked)="onChatOpened($event)"></edge-message-overview>
+    </div>
+    <ng-template #loadingInfo>
+        <mat-spinner class="centered spinner"></mat-spinner>
+        <p class="centered">
+            Loading the chat...
+        </p>
+    </ng-template>
+
+</div>

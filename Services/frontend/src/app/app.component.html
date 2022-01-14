@@ -1,0 +1,31 @@
+<edge-navbar (chatToggled)="sidenav.toggle()">
+
+</edge-navbar>
+
+<mat-sidenav-container
+        hasBackdrop="false">
+
+    <mat-sidenav-content class="d-flex flex-column">
+        <router-outlet></router-outlet>
+        <div class="spacer"></div>
+        <ng-chat [adapter]="adapter"
+                 #ngChatInstance
+                 [userId]="userId"
+                 [hideFriendsList]="true"
+                 [theme]="theme">
+
+        </ng-chat>
+    </mat-sidenav-content>
+
+    <mat-sidenav
+        #sidenav
+        position="end">
+
+        <edge-chat-panel></edge-chat-panel>
+
+    </mat-sidenav>
+
+
+
+
+</mat-sidenav-container>

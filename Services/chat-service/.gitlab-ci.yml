@@ -1,0 +1,13 @@
+include:
+  - file: "/build/node/template-node-npm.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+  - file: "/build/node/template-node-npm-test-latest.yml"
+    project: "platform/pipelines-templates"
+    ref: "master"
+
+default:
+  image: node:12.22.6
+
+variables:
+  IMAGE_NAME: edge-computing/chat-service

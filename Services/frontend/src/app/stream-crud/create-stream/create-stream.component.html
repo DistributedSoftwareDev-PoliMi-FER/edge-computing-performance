@@ -1,0 +1,16 @@
+<div class="container">
+
+    <ng-container *ngIf="!isLoading else loadingInfo">
+        <h1 class="pt-3">Create your stream</h1>
+        <p>Since you did not create a stream yet, you can use the form below to do it.
+            After submitting the form you'll receive stream key and instructions on how to run your stream</p>
+
+        <edge-stream-form (formSubmitted)="onSubmit($event)"
+                          (cancel)="onCancel()">
+        </edge-stream-form>
+    </ng-container>
+
+    <ng-template #loadingInfo>
+        <mat-spinner class="centered spinner"></mat-spinner>
+    </ng-template>
+</div>

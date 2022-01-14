@@ -1,0 +1,297 @@
+{
+  "info": {
+    "title": "User Node Service",
+    "version": "1.0.0",
+    "description": "This service is used for store and update the information in which is specified at whic edge node is connected a specific client."
+  },
+  "host": "edge-computing.polimi-ecb7249.gcp.mia-platform.eu",
+  "basePath": "/api/user-node-service/",
+  "swagger": "2.0",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Public",
+      "description": "No need for authentication"
+    }
+  ],
+  "paths": {
+    "/{idUser}": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Returns the information of the user id specified in the request",
+        "summary": "Returns the information of the user id specified in the request",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserEdgeNode"
+            }
+          },
+          "500": {
+            "description": "Internal server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Post the information about at which node is connected a user",
+        "summary": "Post the information about at which node is connected a user",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idUser": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserEdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Update the information about at which node is connected a user",
+        "summary": "Update the information about at which node is connected a user",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idUser": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserEdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/": {
+      "delete": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Delete the information on the database of the user id specified in the request",
+        "summary": "Delete the information of userId specified in the request",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idUser": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserEdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/byAll/": {
+      "delete": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Delete the information on the database of the user id and the node ip specified in the request",
+        "summary": "Delete the information from the userId and the ip of the node",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idUser": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserEdgeNode"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/node/": {
+      "delete": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Delete the information on the database  of all the users connected to the ip specified in the request",
+        "summary": "Delete the information of all the users connected to the ip of the node",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "description": "Ip of the client that do the request",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserEdgeNode"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserEdgeNode": {
+      "type": "object",
+      "required": [
+        "idUser",
+        "ip"
+      ],
+      "properties": {
+        "isUser": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "subMessage"
+      ],
+      "properties": {
+        "code": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

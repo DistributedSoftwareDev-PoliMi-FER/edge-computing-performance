@@ -1,0 +1,11 @@
+@import "../stream-form-container.style";
+
+:host {
+  .container {
+    @include form-container;
+  }
+
+  .centered {
+    @include centered;
+  }
+}

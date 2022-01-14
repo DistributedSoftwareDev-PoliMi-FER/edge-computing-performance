@@ -1,0 +1,19 @@
+
+:host {
+  mat-sidenav-container {
+    height: calc(100% - 64px);
+  }
+
+  mat-sidenav {
+    width: 300px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  edge-chat-windows-container {
+    position: sticky;
+    bottom: 0;
+  }
+}

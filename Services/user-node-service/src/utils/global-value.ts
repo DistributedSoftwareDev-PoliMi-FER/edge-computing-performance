@@ -1,0 +1,2 @@
+export const DB_TEST = 'mongodb://stefanoNormal:DeDq9uJ5R9WoVrYM8c5L@mongodsd.duckdns.org:27017/dbtest_stefano?authSource=dbtest_stefano&ssl=true';
+export const DB = 'mongodb://normalUser:HxogNnjbKzEC3g6iU8Gk@mongodsd.duckdns.org:27017/dsd?authSource=dsd&ssl=true';

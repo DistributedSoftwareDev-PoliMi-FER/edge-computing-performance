@@ -1,0 +1,30 @@
+@import "src/app/styles/fonts";
+
+:host {
+
+  h1 {
+    font-size: $header-main;
+  }
+
+  .container {
+    max-width: 1240px;
+  }
+
+  .card-container {
+    .debate-card-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: left;
+      align-content: space-around;
+    }
+  }
+
+  edge-stream-card{
+    flex: 1;
+    margin-bottom: 25px;
+  }
+
+  .search-input {
+    margin-right: 12px;
+  }
+}

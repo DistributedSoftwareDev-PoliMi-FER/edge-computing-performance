@@ -1,0 +1,41 @@
+@import "/src/app/styles/colors.scss";
+@import "/src/app/styles/fonts.scss";
+
+:host {
+
+  .welcome-box {
+    margin: 15px auto auto;
+    background-color: map-get($colors, background-light);
+    display: flex;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+    & img {
+      width: 400px;
+      height: 500px;
+    }
+
+    & .text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      & h1 {
+        margin: 0 auto 25px auto;
+        font-size: $header-extra-large;
+      }
+
+      & p {
+        font-size: $subheader;
+        margin-bottom: 20px;
+      }
+
+      & button {
+        width: 50%;
+        justify-self: flex-end;
+      }
+    }
+
+  }
+}
